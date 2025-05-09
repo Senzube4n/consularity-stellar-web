@@ -15,7 +15,7 @@ const Index = () => {
   const [activeSection, setActiveSection] = useState(0);
   
   // Refs for sections to track scrolling
-  const sectionsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const sectionsRef = useRef<(HTMLElement | null)[]>([]);
   
   // Intersection Observer to detect which section is in view
   useEffect(() => {
@@ -57,7 +57,7 @@ const Index = () => {
         <div className="consularity-container text-center z-10">
           <div className="max-w-3xl mx-auto">
             <img 
-              src="/public/lovable-uploads/ad26eaa0-5998-4d76-b99e-67d19dc9f090.png" 
+              src="/lovable-uploads/ad26eaa0-5998-4d76-b99e-67d19dc9f090.png" 
               alt="Consularity Logo" 
               className="h-16 md:h-20 mx-auto mb-6 invert-0 dark:invert" 
             />

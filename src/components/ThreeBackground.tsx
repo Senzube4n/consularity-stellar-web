@@ -25,16 +25,17 @@ const Node = ({ position, size = 0.05, color = '#0EA5E9' }) => {
 
 // Line connecting two nodes
 const ConnectionLine = ({ start, end, color = '#0EA5E9', opacity = 0.2 }) => {
-  const ref = useRef<THREE.Line>(null!);
+  const ref = useRef<THREE.LineBasicMaterial>(null!);
+  const points = [new THREE.Vector3(...start), new THREE.Vector3(...end)];
   
   useFrame(() => {
     if (ref.current) {
-      ref.current.material.opacity = (Math.sin(Date.now() * 0.001) * 0.2) + opacity;
+      ref.current.opacity = (Math.sin(Date.now() * 0.001) * 0.2) + opacity;
     }
   });
   
   return (
-    <line ref={ref}>
+    <line>
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
@@ -43,7 +44,7 @@ const ConnectionLine = ({ start, end, color = '#0EA5E9', opacity = 0.2 }) => {
           itemSize={3}
         />
       </bufferGeometry>
-      <lineBasicMaterial color={color} transparent opacity={opacity} />
+      <lineBasicMaterial ref={ref} color={color} transparent opacity={opacity} />
     </line>
   );
 };
