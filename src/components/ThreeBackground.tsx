@@ -48,14 +48,16 @@ const ConnectionLine = ({ start, end, color = '#0EA5E9', opacity = 0.2 }) => {
   });
   
   return (
-    <line geometry={lineGeometry}>
-      <lineBasicMaterial 
-        ref={materialRef}
-        color={color} 
-        transparent 
-        opacity={opacity} 
-      />
-    </line>
+    <>
+      <primitive object={new THREE.Line(lineGeometry, 
+        <lineBasicMaterial 
+          ref={materialRef}
+          color={color} 
+          transparent 
+          opacity={opacity} 
+        />
+      )} />
+    </>
   );
 };
 
