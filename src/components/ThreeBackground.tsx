@@ -25,26 +25,36 @@ const Node = ({ position, size = 0.05, color = '#0EA5E9' }) => {
 
 // Line connecting two nodes
 const ConnectionLine = ({ start, end, color = '#0EA5E9', opacity = 0.2 }) => {
-  const ref = useRef<THREE.LineBasicMaterial>(null!);
-  const points = [new THREE.Vector3(...start), new THREE.Vector3(...end)];
+  // Create points using Three.js Vector3
+  const points = useMemo(() => {
+    return [
+      new THREE.Vector3(...start),
+      new THREE.Vector3(...end)
+    ];
+  }, [start, end]);
+  
+  // Create geometry using BufferGeometry and LineBasicMaterial
+  const lineGeometry = useMemo(() => {
+    const geometry = new THREE.BufferGeometry().setFromPoints(points);
+    return geometry;
+  }, [points]);
+  
+  const materialRef = useRef<THREE.LineBasicMaterial>(null!);
   
   useFrame(() => {
-    if (ref.current) {
-      ref.current.opacity = (Math.sin(Date.now() * 0.001) * 0.2) + opacity;
+    if (materialRef.current) {
+      materialRef.current.opacity = (Math.sin(Date.now() * 0.001) * 0.2) + opacity;
     }
   });
   
   return (
-    <line>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          array={new Float32Array([...start, ...end])}
-          count={2}
-          itemSize={3}
-        />
-      </bufferGeometry>
-      <lineBasicMaterial ref={ref} color={color} transparent opacity={opacity} />
+    <line geometry={lineGeometry}>
+      <lineBasicMaterial 
+        ref={materialRef}
+        color={color} 
+        transparent 
+        opacity={opacity} 
+      />
     </line>
   );
 };
