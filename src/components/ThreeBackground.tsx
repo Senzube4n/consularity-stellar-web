@@ -36,27 +36,33 @@ const FallbackBackground = ({ isDarkMode }) => {
 
 // Enhanced orb component with glow effect
 const Orb = ({ position, size = 0.08, color, speed = 1, glowColor }) => {
-  const ref = useRef(null);
+  const meshRef = useRef(null);
+  const glowRef = useRef(null);
   const [baseSpeed] = useState(() => Math.random() * 0.7 + 0.5); // Random speed multiplier
   const [randomOffset] = useState(() => Math.random() * 1000); // Random offset for unique movement patterns
   
   useFrame(() => {
-    if (ref.current) {
+    if (meshRef.current) {
       // More complex movement for each orb
-      ref.current.position.y += Math.sin(Date.now() * 0.0003 * baseSpeed * speed + randomOffset) * 0.003;
-      ref.current.position.x += Math.cos(Date.now() * 0.0002 * baseSpeed * speed + randomOffset) * 0.002;
-      ref.current.position.z += Math.sin(Date.now() * 0.0001 * baseSpeed * speed + randomOffset) * 0.001;
+      meshRef.current.position.y += Math.sin(Date.now() * 0.0003 * baseSpeed * speed + randomOffset) * 0.003;
+      meshRef.current.position.x += Math.cos(Date.now() * 0.0002 * baseSpeed * speed + randomOffset) * 0.002;
+      meshRef.current.position.z += Math.sin(Date.now() * 0.0001 * baseSpeed * speed + randomOffset) * 0.001;
       
       // Slight rotation for more dynamism
-      ref.current.rotation.x += 0.001 * speed;
-      ref.current.rotation.y += 0.001 * speed;
+      meshRef.current.rotation.x += 0.001 * speed;
+      meshRef.current.rotation.y += 0.001 * speed;
+      
+      // Update glow position to match the orb
+      if (glowRef.current) {
+        glowRef.current.position.copy(meshRef.current.position);
+      }
     }
   });
   
   return (
     <group>
       {/* Main orb */}
-      <Sphere ref={ref} args={[size, 16, 16]} position={position}>
+      <Sphere ref={meshRef} args={[size, 16, 16]} position={position}>
         <meshStandardMaterial 
           color={color} 
           metalness={0.2} 
@@ -67,7 +73,7 @@ const Orb = ({ position, size = 0.08, color, speed = 1, glowColor }) => {
       </Sphere>
       
       {/* Glow effect */}
-      <Sphere args={[size * 1.4, 16, 16]} position={position}>
+      <Sphere ref={glowRef} args={[size * 1.4, 16, 16]} position={position}>
         <meshBasicMaterial 
           color={glowColor} 
           transparent={true} 
@@ -106,28 +112,28 @@ const ConnectionLine = ({ start, end, color, glowColor, opacity = 0.3 }) => {
   return (
     <group>
       {/* Main line */}
-      <primitive object={new THREE.Line(
-        lineGeometry,
+      <line geometry={lineGeometry}>
         <lineBasicMaterial
           ref={lineMaterialRef}
           color={color}
           transparent
           opacity={opacity}
           linewidth={1}
+          attach="material"
         />
-      )} />
+      </line>
       
       {/* Glow line */}
-      <primitive object={new THREE.Line(
-        lineGeometry,
+      <line geometry={lineGeometry}>
         <lineBasicMaterial
           ref={glowMaterialRef}
           color={glowColor}
           transparent
           opacity={opacity * 0.5}
           linewidth={2}
+          attach="material"
         />
-      )} />
+      </line>
     </group>
   );
 };
@@ -158,26 +164,26 @@ const Triangle = ({ points, color, glowColor, opacity = 0.15 }) => {
   return (
     <group>
       {/* Main triangle */}
-      <mesh rotation={[Math.PI / 2, 0, 0]}>
-        <primitive object={geometry} />
+      <mesh rotation={[Math.PI / 2, 0, 0]} geometry={geometry}>
         <meshBasicMaterial 
           ref={materialRef}
           color={color} 
           transparent 
           opacity={opacity} 
           side={THREE.DoubleSide}
+          attach="material"
         />
       </mesh>
       
       {/* Glow triangle */}
-      <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 0.001, 0]}>
-        <primitive object={geometry} />
+      <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 0.001, 0]} geometry={geometry}>
         <meshBasicMaterial 
           ref={glowMaterialRef}
           color={glowColor} 
           transparent 
           opacity={opacity * 0.6} 
           side={THREE.DoubleSide}
+          attach="material"
         />
       </mesh>
     </group>
@@ -242,7 +248,7 @@ const DynamicConnections = ({ nodes, colors, maxDistance = 5, triangleDistance =
             key={`triangle-${index}`}
             points={trianglePoints}
             color={colors.triangleColor}
-            glowColor={colors.glowGlowColor}
+            glowColor={colors.glowGlowColor || colors.glowColor}
             opacity={0.15}
           />
         );
@@ -328,6 +334,39 @@ const Scene = ({ isDarkMode }) => {
   );
 };
 
+// Define props interface for ErrorBoundary
+interface ErrorBoundaryProps {
+  fallback: React.ReactNode;
+  children: React.ReactNode;
+}
+
+interface ErrorBoundaryState {
+  hasError: boolean;
+}
+
+// Simple error boundary component for handling WebGL errors
+class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  constructor(props: ErrorBoundaryProps) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error: any): ErrorBoundaryState {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void {
+    console.error("ThreeJS error:", error, errorInfo);
+  }
+
+  render(): React.ReactNode {
+    if (this.state.hasError) {
+      return this.props.fallback;
+    }
+    return this.props.children;
+  }
+}
+
 // Main component with error boundary for WebGL
 const ThreeBackground = () => {
   const { theme } = useTheme();
@@ -336,8 +375,11 @@ const ThreeBackground = () => {
 
   // Handle WebGL errors
   useEffect(() => {
-    const handleError = (event) => {
-      if (event.message?.includes('WebGL') || event.error?.message?.includes('WebGL')) {
+    const handleError = (event: ErrorEvent) => {
+      if (
+        (event.message && event.message.includes('WebGL')) || 
+        (event.error && event.error.message && event.error.message.includes('WebGL'))
+      ) {
         console.error('WebGL error detected:', event);
         setHasWebGLError(true);
       }
@@ -357,7 +399,9 @@ const ThreeBackground = () => {
         <Canvas
           camera={{ position: [0, 0, 12], fov: 50 }}
           style={{ background: isDarkMode ? '#121212' : '#f8fafc' }}
-          onError={() => setHasWebGLError(true)}
+          onCreated={({ gl }) => {
+            gl.setClearColor(isDarkMode ? '#121212' : '#f8fafc');
+          }}
           shadows
           dpr={[1, 1.5]} // Limit DPR for better performance
         >
@@ -369,28 +413,5 @@ const ThreeBackground = () => {
     </div>
   );
 };
-
-// Simple error boundary component for handling WebGL errors
-class ErrorBoundary extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { hasError: false };
-  }
-
-  static getDerivedStateFromError(error) {
-    return { hasError: true };
-  }
-
-  componentDidCatch(error, errorInfo) {
-    console.error("ThreeJS error:", error, errorInfo);
-  }
-
-  render() {
-    if (this.state.hasError) {
-      return this.props.fallback;
-    }
-    return this.props.children;
-  }
-}
 
 export default ThreeBackground;
