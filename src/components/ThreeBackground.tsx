@@ -1,34 +1,85 @@
 
-import React, { useRef, useMemo, useEffect, useState } from 'react';
+import React, { useRef, useMemo, useEffect, useState, Suspense } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
+import { OrbitControls, Sphere, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 import { useTheme } from '@/hooks/useTheme';
 
-// Node component that represents each point in our constellation
-const Node = ({ position, size = 0.05, color = '#0EA5E9', speed = 1 }) => {
-  const ref = useRef<THREE.Mesh>(null!);
-  const [baseSpeed] = useState(() => Math.random() * 0.5 + 0.5); // Random speed multiplier
+// Fallback component when WebGL isn't available
+const FallbackBackground = ({ isDarkMode }) => {
+  return (
+    <div 
+      className={`absolute inset-0 -z-10 ${
+        isDarkMode 
+          ? 'bg-gradient-to-br from-gray-900 to-gray-800' 
+          : 'bg-gradient-to-br from-sky-50 to-indigo-100'
+      }`}
+    >
+      <div className="absolute inset-0 opacity-30">
+        {Array.from({ length: 50 }).map((_, i) => (
+          <div
+            key={i}
+            className={`absolute rounded-full ${isDarkMode ? 'bg-blue-400/20' : 'bg-blue-500/20'}`}
+            style={{
+              width: `${Math.random() * 12 + 4}px`,
+              height: `${Math.random() * 12 + 4}px`,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animation: `float-slow ${Math.random() * 10 + 10}s infinite ease-in-out`,
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// Enhanced orb component with glow effect
+const Orb = ({ position, size = 0.08, color, speed = 1, glowColor }) => {
+  const ref = useRef(null);
+  const [baseSpeed] = useState(() => Math.random() * 0.7 + 0.5); // Random speed multiplier
+  const [randomOffset] = useState(() => Math.random() * 1000); // Random offset for unique movement patterns
   
   useFrame(() => {
     if (ref.current) {
-      // Unique movement for each node
-      ref.current.position.y += Math.sin(Date.now() * 0.001 * baseSpeed + position[0]) * 0.0005 * speed;
-      ref.current.position.x += Math.cos(Date.now() * 0.0008 * baseSpeed + position[1]) * 0.0003 * speed;
+      // More complex movement for each orb
+      ref.current.position.y += Math.sin(Date.now() * 0.0003 * baseSpeed * speed + randomOffset) * 0.003;
+      ref.current.position.x += Math.cos(Date.now() * 0.0002 * baseSpeed * speed + randomOffset) * 0.002;
+      ref.current.position.z += Math.sin(Date.now() * 0.0001 * baseSpeed * speed + randomOffset) * 0.001;
+      
+      // Slight rotation for more dynamism
+      ref.current.rotation.x += 0.001 * speed;
+      ref.current.rotation.y += 0.001 * speed;
     }
   });
   
   return (
-    <mesh ref={ref} position={position}>
-      <sphereGeometry args={[size, 16, 16]} />
-      <meshBasicMaterial color={color} />
-    </mesh>
+    <group>
+      {/* Main orb */}
+      <Sphere ref={ref} args={[size, 16, 16]} position={position}>
+        <meshStandardMaterial 
+          color={color} 
+          metalness={0.2} 
+          roughness={0.3} 
+          emissive={glowColor} 
+          emissiveIntensity={0.5} 
+        />
+      </Sphere>
+      
+      {/* Glow effect */}
+      <Sphere args={[size * 1.4, 16, 16]} position={position}>
+        <meshBasicMaterial 
+          color={glowColor} 
+          transparent={true} 
+          opacity={0.15} 
+        />
+      </Sphere>
+    </group>
   );
 };
 
-// Line connecting two nodes
-const ConnectionLine = ({ start, end, color = '#0EA5E9', opacity = 0.2 }) => {
-  // Create points using Three.js Vector3
+// Enhanced line connecting two orbs
+const ConnectionLine = ({ start, end, color, glowColor, opacity = 0.3 }) => {
   const points = useMemo(() => {
     return [
       new THREE.Vector3(...start),
@@ -36,36 +87,53 @@ const ConnectionLine = ({ start, end, color = '#0EA5E9', opacity = 0.2 }) => {
     ];
   }, [start, end]);
   
-  // Create geometry using BufferGeometry and LineBasicMaterial
   const lineGeometry = useMemo(() => {
-    const geometry = new THREE.BufferGeometry().setFromPoints(points);
-    return geometry;
+    return new THREE.BufferGeometry().setFromPoints(points);
   }, [points]);
   
-  const materialRef = useRef<THREE.LineBasicMaterial>(null!);
+  const lineMaterialRef = useRef();
+  const glowMaterialRef = useRef();
   
   useFrame(() => {
-    if (materialRef.current) {
-      materialRef.current.opacity = (Math.sin(Date.now() * 0.001) * 0.2) + opacity;
+    if (lineMaterialRef.current && glowMaterialRef.current) {
+      // Pulsing effect
+      const pulse = (Math.sin(Date.now() * 0.001) * 0.2) + 0.8;
+      lineMaterialRef.current.opacity = pulse * opacity;
+      glowMaterialRef.current.opacity = pulse * opacity * 0.5;
     }
   });
   
   return (
-    <>
-      <primitive object={new THREE.Line(lineGeometry, 
-        <lineBasicMaterial 
-          ref={materialRef}
-          color={color} 
-          transparent 
-          opacity={opacity} 
+    <group>
+      {/* Main line */}
+      <primitive object={new THREE.Line(
+        lineGeometry,
+        <lineBasicMaterial
+          ref={lineMaterialRef}
+          color={color}
+          transparent
+          opacity={opacity}
+          linewidth={1}
         />
       )} />
-    </>
+      
+      {/* Glow line */}
+      <primitive object={new THREE.Line(
+        lineGeometry,
+        <lineBasicMaterial
+          ref={glowMaterialRef}
+          color={glowColor}
+          transparent
+          opacity={opacity * 0.5}
+          linewidth={2}
+        />
+      )} />
+    </group>
   );
 };
 
-// Triangle formed by three nodes
-const Triangle = ({ points, color = '#0EA5E9', opacity = 0.1 }) => {
+// Enhanced triangle with glowing effect
+const Triangle = ({ points, color, glowColor, opacity = 0.15 }) => {
   const geometry = useMemo(() => {
     const shape = new THREE.Shape();
     shape.moveTo(points[0].x, points[0].y);
@@ -75,36 +143,55 @@ const Triangle = ({ points, color = '#0EA5E9', opacity = 0.1 }) => {
     return new THREE.ShapeGeometry(shape);
   }, [points]);
 
-  const materialRef = useRef<THREE.MeshBasicMaterial>(null!);
+  const materialRef = useRef();
+  const glowMaterialRef = useRef();
   
   useFrame(() => {
-    if (materialRef.current) {
-      materialRef.current.opacity = (Math.sin(Date.now() * 0.0015) * 0.1) + opacity;
+    if (materialRef.current && glowMaterialRef.current) {
+      // Pulsing effect
+      const pulse = (Math.sin(Date.now() * 0.0015) * 0.2) + 0.8;
+      materialRef.current.opacity = pulse * opacity;
+      glowMaterialRef.current.opacity = pulse * opacity * 0.6;
     }
   });
 
   return (
-    <mesh rotation={[Math.PI / 2, 0, 0]}>
-      <primitive object={geometry} />
-      <meshBasicMaterial 
-        ref={materialRef}
-        color={color} 
-        transparent 
-        opacity={opacity} 
-        side={THREE.DoubleSide}
-      />
-    </mesh>
+    <group>
+      {/* Main triangle */}
+      <mesh rotation={[Math.PI / 2, 0, 0]}>
+        <primitive object={geometry} />
+        <meshBasicMaterial 
+          ref={materialRef}
+          color={color} 
+          transparent 
+          opacity={opacity} 
+          side={THREE.DoubleSide}
+        />
+      </mesh>
+      
+      {/* Glow triangle */}
+      <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 0.001, 0]}>
+        <primitive object={geometry} />
+        <meshBasicMaterial 
+          ref={glowMaterialRef}
+          color={glowColor} 
+          transparent 
+          opacity={opacity * 0.6} 
+          side={THREE.DoubleSide}
+        />
+      </mesh>
+    </group>
   );
 };
 
-// Dynamic connections manager
-const DynamicConnections = ({ nodes, maxDistance = 5, triangleDistance = 3 }) => {
-  const [connections, setConnections] = useState<Array<[number, number]>>([]);
-  const [triangles, setTriangles] = useState<Array<[number, number, number]>>([]);
+// Enhanced dynamic connections manager
+const DynamicConnections = ({ nodes, colors, maxDistance = 5, triangleDistance = 3 }) => {
+  const [connections, setConnections] = useState([]);
+  const [triangles, setTriangles] = useState([]);
   
   useFrame(() => {
-    const newConnections: Array<[number, number]> = [];
-    const potentialTriangles: {[key: string]: number[]} = {};
+    const newConnections = [];
+    const potentialTriangles = {};
     
     // Check distances between all nodes
     for (let i = 0; i < nodes.length; i++) {
@@ -115,7 +202,6 @@ const DynamicConnections = ({ nodes, maxDistance = 5, triangleDistance = 3 }) =>
           newConnections.push([i, j]);
           
           // Store connected pairs for triangle detection
-          const key = `${i}-${j}`;
           for (let k = 0; k < nodes.length; k++) {
             if (k !== i && k !== j) {
               const dist1 = calculateDistance(nodes[i], nodes[k]);
@@ -133,7 +219,7 @@ const DynamicConnections = ({ nodes, maxDistance = 5, triangleDistance = 3 }) =>
     }
     
     setConnections(newConnections);
-    setTriangles(Object.values(potentialTriangles) as Array<[number, number, number]>);
+    setTriangles(Object.values(potentialTriangles));
   });
   
   return (
@@ -141,8 +227,11 @@ const DynamicConnections = ({ nodes, maxDistance = 5, triangleDistance = 3 }) =>
       {connections.map(([i, j], index) => (
         <ConnectionLine 
           key={`line-${index}`}
-          start={nodes[i] as [number, number, number]}
-          end={nodes[j] as [number, number, number]}
+          start={nodes[i]}
+          end={nodes[j]}
+          color={colors.lineColor}
+          glowColor={colors.glowColor}
+          opacity={0.4}
         />
       ))}
       
@@ -152,6 +241,9 @@ const DynamicConnections = ({ nodes, maxDistance = 5, triangleDistance = 3 }) =>
           <Triangle 
             key={`triangle-${index}`}
             points={trianglePoints}
+            color={colors.triangleColor}
+            glowColor={colors.glowGlowColor}
+            opacity={0.15}
           />
         );
       })}
@@ -160,7 +252,7 @@ const DynamicConnections = ({ nodes, maxDistance = 5, triangleDistance = 3 }) =>
 };
 
 // Calculate distance between two 3D points
-function calculateDistance(point1: number[], point2: number[]) {
+function calculateDistance(point1, point2) {
   return Math.sqrt(
     Math.pow(point1[0] - point2[0], 2) +
     Math.pow(point1[1] - point2[1], 2) +
@@ -168,9 +260,9 @@ function calculateDistance(point1: number[], point2: number[]) {
   );
 }
 
-// Constellation component that generates nodes and connections
-const Constellation = ({ count = 50, bounds = 10 }) => {
-  // Generate random nodes
+// Enhanced constellation component
+const Constellation = ({ count = 50, bounds = 10, colors }) => {
+  // Generate random nodes with varying speeds
   const nodes = useMemo(() => {
     return Array.from({ length: count }, () => [
       (Math.random() - 0.5) * bounds,
@@ -179,54 +271,126 @@ const Constellation = ({ count = 50, bounds = 10 }) => {
     ]);
   }, [count, bounds]);
   
+  const speeds = useMemo(() => {
+    return Array.from({ length: count }, () => Math.random() * 2 + 0.5);
+  }, [count]);
+  
   return (
     <>
       {nodes.map((pos, i) => (
-        <Node 
+        <Orb 
           key={i} 
-          position={pos as [number, number, number]} 
-          speed={Math.random() * 1.5 + 0.5}
+          position={pos} 
+          speed={speeds[i]}
+          color={colors.orbColor}
+          glowColor={colors.glowColor}
+          size={Math.random() * 0.04 + 0.04} // Varying sizes
         />
       ))}
       
-      <DynamicConnections nodes={nodes} />
+      <DynamicConnections 
+        nodes={nodes} 
+        colors={colors}
+        maxDistance={3.5} 
+        triangleDistance={2.5} 
+      />
     </>
   );
 };
 
-// Main ThreeBackground component
+// Enhanced Scene component with proper theme integration
+const Scene = ({ isDarkMode }) => {
+  // Colors based on theme
+  const colors = useMemo(() => ({
+    orbColor: isDarkMode ? '#1E90FF' : '#0EA5E9',
+    glowColor: isDarkMode ? '#4169E1' : '#38BDF8',
+    lineColor: isDarkMode ? '#4682B4' : '#0EA5E9',
+    glowGlowColor: isDarkMode ? '#1E90FF' : '#38BDF8',
+    triangleColor: isDarkMode ? '#4169E1' : '#0EA5E9',
+    glowTriangleColor: isDarkMode ? '#6495ED' : '#38BDF8',
+    ambientLight: isDarkMode ? '#222233' : '#f0f8ff',
+    pointLight: isDarkMode ? '#6495ED' : '#0EA5E9',
+  }), [isDarkMode]);
+
+  return (
+    <>
+      <ambientLight intensity={isDarkMode ? 0.15 : 0.25} color={colors.ambientLight} />
+      <pointLight position={[0, 0, 10]} intensity={isDarkMode ? 0.7 : 0.5} color={colors.pointLight} />
+      <Constellation count={60} bounds={15} colors={colors} />
+      <OrbitControls
+        enableZoom={false}
+        enablePan={false}
+        rotateSpeed={0.3}
+        autoRotate
+        autoRotateSpeed={0.3}
+      />
+    </>
+  );
+};
+
+// Main component with error boundary for WebGL
 const ThreeBackground = () => {
   const { theme } = useTheme();
-  const [bgColor, setBgColor] = useState('transparent');
-  const [nodeColor, setNodeColor] = useState('#0EA5E9');
-  
-  // Update colors based on theme
+  const isDarkMode = theme === 'dark';
+  const [hasWebGLError, setHasWebGLError] = useState(false);
+
+  // Handle WebGL errors
   useEffect(() => {
-    if (theme === 'dark') {
-      setBgColor('transparent');
-      setNodeColor('#1E90FF');
-    } else {
-      setBgColor('transparent');
-      setNodeColor('#0EA5E9');
-    }
-  }, [theme]);
-  
+    const handleError = (event) => {
+      if (event.message?.includes('WebGL') || event.error?.message?.includes('WebGL')) {
+        console.error('WebGL error detected:', event);
+        setHasWebGLError(true);
+      }
+    };
+
+    window.addEventListener('error', handleError);
+    return () => window.removeEventListener('error', handleError);
+  }, []);
+
+  if (hasWebGLError) {
+    return <FallbackBackground isDarkMode={isDarkMode} />;
+  }
+
   return (
     <div className="absolute inset-0 -z-10">
-      <Canvas camera={{ position: [0, 0, 10], fov: 50 }}>
-        <color attach="background" args={[bgColor]} />
-        <ambientLight intensity={0.1} />
-        <Constellation count={70} bounds={15} />
-        <OrbitControls
-          enableZoom={false}
-          enablePan={false}
-          rotateSpeed={0.5}
-          autoRotate
-          autoRotateSpeed={0.5}
-        />
-      </Canvas>
+      <ErrorBoundary fallback={<FallbackBackground isDarkMode={isDarkMode} />}>
+        <Canvas
+          camera={{ position: [0, 0, 12], fov: 50 }}
+          style={{ background: isDarkMode ? '#121212' : '#f8fafc' }}
+          onError={() => setHasWebGLError(true)}
+          shadows
+          dpr={[1, 1.5]} // Limit DPR for better performance
+        >
+          <Suspense fallback={null}>
+            <Scene isDarkMode={isDarkMode} />
+          </Suspense>
+        </Canvas>
+      </ErrorBoundary>
     </div>
   );
 };
+
+// Simple error boundary component for handling WebGL errors
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.error("ThreeJS error:", error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return this.props.fallback;
+    }
+    return this.props.children;
+  }
+}
 
 export default ThreeBackground;
