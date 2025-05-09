@@ -1,7 +1,7 @@
 
 import React, { useRef, useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Server, Cloud, Database, Settings } from "lucide-react";
+import { ArrowRight, Server, Cloud, Database, Settings, BarChart, LineChart, PieChart } from "lucide-react";
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ThreeBackground from '@/components/ThreeBackground';
@@ -9,6 +9,8 @@ import ServiceCard from '@/components/ServiceCard';
 import FeatureColumn from '@/components/FeatureColumn';
 import ConnectorLine from '@/components/ConnectorLine';
 import { useLanguage } from '@/hooks/useLanguage';
+import ImpactMetrics from '@/components/ImpactMetrics';
+import PerformanceCharts from '@/components/PerformanceCharts';
 
 const Index = () => {
   const { t } = useLanguage();
@@ -163,13 +165,57 @@ const Index = () => {
         </div>
       </section>
       
-      {/* CTA Section */}
+      {/* Our Impact Section - NEW */}
       <section
         ref={el => sectionsRef.current[3] = el}
         data-index={3}
         className="py-24 relative"
       >
         <ConnectorLine active={activeSection === 3} />
+        
+        <div className="consularity-container">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('Our Impact')}</h2>
+            <div className="w-20 h-1 bg-primary mx-auto" />
+            <p className="text-lg text-muted-foreground mt-6 max-w-3xl mx-auto">
+              At Consularity, we measure our success by the transformative outcomes we deliver for our clients. 
+              Each case study represents a journey through the technological singularity, resulting in measurable 
+              business improvements and competitive advantages.
+            </p>
+          </div>
+          
+          <ImpactMetrics />
+        </div>
+      </section>
+      
+      {/* Impact Metrics Section - NEW */}
+      <section
+        ref={el => sectionsRef.current[4] = el}
+        data-index={4}
+        className="py-24 bg-gray-50/50 dark:bg-gray-900/30 relative"
+      >
+        <ConnectorLine active={activeSection === 4} />
+        
+        <div className="consularity-container">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('Impact Metrics')}</h2>
+            <div className="w-20 h-1 bg-primary mx-auto" />
+            <p className="text-lg text-muted-foreground mt-6 max-w-3xl mx-auto">
+              Visualizing the measurable impact of our solutions across client implementations
+            </p>
+          </div>
+          
+          <PerformanceCharts />
+        </div>
+      </section>
+      
+      {/* CTA Section */}
+      <section
+        ref={el => sectionsRef.current[5] = el}
+        data-index={5}
+        className="py-24 relative"
+      >
+        <ConnectorLine active={activeSection === 5} />
         
         <div className="consularity-container">
           <div className="max-w-3xl mx-auto text-center">
