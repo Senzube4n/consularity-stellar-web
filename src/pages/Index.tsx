@@ -1,4 +1,6 @@
+
 import React, { useRef, useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom'; // Added useNavigate for programmatic navigation
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Server, Cloud, Database, Settings } from "lucide-react";
 import Navbar from '@/components/Navbar';
@@ -11,15 +13,51 @@ import { useLanguage } from '@/hooks/useLanguage';
 import ImpactMetrics from '@/components/ImpactMetrics';
 import PerformanceCharts from '@/components/PerformanceCharts';
 
+/**
+ * Index Page Component
+ * 
+ * This component serves as the landing page for the Consularity website.
+ * It uses intersection observers to track which section is currently in view
+ * and implements smooth scrolling functionality for navigation.
+ * 
+ * @see https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
+ * @see https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView
+ */
 const Index = () => {
   const { t } = useLanguage();
   const [activeSection, setActiveSection] = useState(0);
+  const navigate = useNavigate(); // Hook for programmatic navigation
   
   // Refs for sections to track scrolling
   const sectionsRef = useRef<(HTMLElement | null)[]>([]);
   
+  // Ref for the approach section for smooth scrolling
+  const approachSectionRef = useRef<HTMLElement | null>(null);
+  
+  /**
+   * Handle the "Let's Talk" button click
+   * Navigates to the contact page
+   */
+  const handleLetsTalkClick = () => {
+    navigate('/contact');
+  };
+  
+  /**
+   * Handle the "Discover Our Approach" button click
+   * Scrolls smoothly to the approach section
+   */
+  const handleDiscoverApproachClick = () => {
+    if (approachSectionRef.current) {
+      approachSectionRef.current.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+  
   // Intersection Observer to detect which section is in view
   useEffect(() => {
+    // Create an observer that updates the active section when sections come into view
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -32,10 +70,12 @@ const Index = () => {
       { threshold: 0.4 } // 40% visibility to trigger
     );
     
+    // Observe all section elements
     sectionsRef.current.forEach((section) => {
       if (section) observer.observe(section);
     });
     
+    // Cleanup function to unobserve elements
     return () => {
       sectionsRef.current.forEach((section) => {
         if (section) observer.unobserve(section);
@@ -73,11 +113,19 @@ const Index = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button className="cta-button text-lg px-8 py-6">
+              <Button 
+                className="cta-button text-lg px-8 py-6"
+                onClick={handleLetsTalkClick}
+              >
                 {t('Let\'s Talk')}
               </Button>
               
-              <Button variant="outline" size="lg" className="group">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="group"
+                onClick={handleDiscoverApproachClick}
+              >
                 {t('Discover Our Approach')}
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
@@ -130,9 +178,14 @@ const Index = () => {
       
       {/* Approach Section */}
       <section
-        ref={el => sectionsRef.current[2] = el}
+        ref={(el) => {
+          // Store reference for both the section tracking and the smooth scroll
+          sectionsRef.current[2] = el;
+          approachSectionRef.current = el;
+        }}
         data-index={2}
         className="py-24 bg-gray-50/50 dark:bg-gray-900/30 relative"
+        id="approach" // Added ID for direct navigation
       >
         <ConnectorLine active={activeSection === 2} />
         
@@ -164,7 +217,7 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Our Impact Section - NEW */}
+      {/* Our Impact Section */}
       <section
         ref={el => sectionsRef.current[3] = el}
         data-index={3}
@@ -187,7 +240,7 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Impact Metrics Section - NEW */}
+      {/* Impact Metrics Section */}
       <section
         ref={el => sectionsRef.current[4] = el}
         data-index={4}
@@ -227,7 +280,10 @@ const Index = () => {
               Let's discuss how Consularity can help you achieve your goals.
             </p>
             
-            <Button className="cta-button text-lg px-8 py-6">
+            <Button 
+              className="cta-button text-lg px-8 py-6"
+              onClick={handleLetsTalkClick}
+            >
               {t('Let\'s Talk')}
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>

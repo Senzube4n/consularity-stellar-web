@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Sun, Moon, Globe } from "lucide-react";
 import {
@@ -12,12 +12,36 @@ import {
 import { useTheme } from "@/hooks/useTheme";
 import { useLanguage } from "@/hooks/useLanguage";
 
+/**
+ * Navbar Component
+ * 
+ * A responsive navigation bar that adapts to scroll position and theme changes.
+ * Includes language selection, theme toggle, and navigation links.
+ * 
+ * @see https://reactrouter.com/en/main/components/link - For Link component
+ * @see https://reactrouter.com/en/main/hooks/use-navigate - For useNavigate hook
+ * @see https://tailwindcss.com/docs/backdrop-blur - For backdrop blur effect
+ */
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const { theme, setTheme } = useTheme();
   const { language, setLanguage, t } = useLanguage();
+  const navigate = useNavigate(); // Hook for programmatic navigation
   
+  /**
+   * Handle navigation to the contact page
+   * Uses React Router's useNavigate for programmatic navigation
+   */
+  const handleLetsTalkClick = () => {
+    navigate('/contact');
+  };
+  
+  // Effect for detecting scroll position to style the navbar accordingly
   useEffect(() => {
+    /**
+     * Handles scroll events to change navbar appearance
+     * Adds background and shadow when page is scrolled
+     */
     const handleScroll = () => {
       if (window.scrollY > 20) {
         setScrolled(true);
@@ -27,6 +51,7 @@ const Navbar = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
+    // Cleanup function to remove event listener
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
@@ -39,7 +64,7 @@ const Navbar = () => {
       <div className="consularity-container flex justify-between items-center py-4">
         <Link to="/" className="flex items-center">
           <img 
-            src="/public/lovable-uploads/ad26eaa0-5998-4d76-b99e-67d19dc9f090.png" 
+            src="/lovable-uploads/ad26eaa0-5998-4d76-b99e-67d19dc9f090.png" 
             alt="Consularity Logo" 
             className="h-10 mr-2 invert-0 dark:invert"
           />
@@ -78,6 +103,7 @@ const Navbar = () => {
             variant="ghost"
             size="icon"
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
           >
             {theme === 'dark' ? (
               <Sun className="h-5 w-5" />
@@ -86,7 +112,10 @@ const Navbar = () => {
             )}
           </Button>
 
-          <Button className="cta-button hidden sm:inline-flex">
+          <Button 
+            className="cta-button hidden sm:inline-flex"
+            onClick={handleLetsTalkClick}
+          >
             {t('Let\'s Talk')}
           </Button>
         </div>
