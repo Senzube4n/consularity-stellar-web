@@ -62,7 +62,8 @@ const Orb = ({ position, size = 0.08, color, speed = 1, glowColor }) => {
   return (
     <group>
       {/* Main orb */}
-      <Sphere ref={meshRef} args={[size, 16, 16]} position={position}>
+      <mesh ref={meshRef} position={position}>
+        <sphereGeometry args={[size, 16, 16]} />
         <meshStandardMaterial 
           color={color} 
           metalness={0.2} 
@@ -70,22 +71,26 @@ const Orb = ({ position, size = 0.08, color, speed = 1, glowColor }) => {
           emissive={glowColor} 
           emissiveIntensity={0.5} 
         />
-      </Sphere>
+      </mesh>
       
       {/* Glow effect */}
-      <Sphere ref={glowRef} args={[size * 1.4, 16, 16]} position={position}>
+      <mesh ref={glowRef} position={position}>
+        <sphereGeometry args={[size * 1.4, 16, 16]} />
         <meshBasicMaterial 
           color={glowColor} 
           transparent={true} 
           opacity={0.15} 
         />
-      </Sphere>
+      </mesh>
     </group>
   );
 };
 
 // Enhanced line connecting two orbs
 const ConnectionLine = ({ start, end, color, glowColor, opacity = 0.3 }) => {
+  const ref = useRef();
+  const glowRef = useRef();
+  
   const points = useMemo(() => {
     return [
       new THREE.Vector3(...start),
@@ -97,49 +102,42 @@ const ConnectionLine = ({ start, end, color, glowColor, opacity = 0.3 }) => {
     return new THREE.BufferGeometry().setFromPoints(points);
   }, [points]);
   
-  const lineMaterialRef = useRef();
-  const glowMaterialRef = useRef();
-  
   useFrame(() => {
-    if (lineMaterialRef.current && glowMaterialRef.current) {
+    if (ref.current) {
       // Pulsing effect
       const pulse = (Math.sin(Date.now() * 0.001) * 0.2) + 0.8;
-      lineMaterialRef.current.opacity = pulse * opacity;
-      glowMaterialRef.current.opacity = pulse * opacity * 0.5;
+      ref.current.material.opacity = pulse * opacity;
+      
+      if (glowRef.current) {
+        glowRef.current.material.opacity = pulse * opacity * 0.5;
+      }
     }
   });
   
   return (
     <group>
       {/* Main line */}
-      <line geometry={lineGeometry}>
-        <lineBasicMaterial
-          ref={lineMaterialRef}
-          color={color}
-          transparent
-          opacity={opacity}
-          linewidth={1}
-          attach="material"
-        />
-      </line>
+      <primitive object={new THREE.Line(lineGeometry, new THREE.LineBasicMaterial({ 
+        color: color, 
+        transparent: true, 
+        opacity: opacity 
+      }))} ref={ref} />
       
       {/* Glow line */}
-      <line geometry={lineGeometry}>
-        <lineBasicMaterial
-          ref={glowMaterialRef}
-          color={glowColor}
-          transparent
-          opacity={opacity * 0.5}
-          linewidth={2}
-          attach="material"
-        />
-      </line>
+      <primitive object={new THREE.Line(lineGeometry, new THREE.LineBasicMaterial({ 
+        color: glowColor, 
+        transparent: true, 
+        opacity: opacity * 0.5 
+      }))} ref={glowRef} />
     </group>
   );
 };
 
 // Enhanced triangle with glowing effect
 const Triangle = ({ points, color, glowColor, opacity = 0.15 }) => {
+  const materialRef = useRef();
+  const glowMaterialRef = useRef();
+  
   const geometry = useMemo(() => {
     const shape = new THREE.Shape();
     shape.moveTo(points[0].x, points[0].y);
@@ -149,15 +147,15 @@ const Triangle = ({ points, color, glowColor, opacity = 0.15 }) => {
     return new THREE.ShapeGeometry(shape);
   }, [points]);
 
-  const materialRef = useRef();
-  const glowMaterialRef = useRef();
-  
   useFrame(() => {
-    if (materialRef.current && glowMaterialRef.current) {
+    if (materialRef.current) {
       // Pulsing effect
       const pulse = (Math.sin(Date.now() * 0.0015) * 0.2) + 0.8;
       materialRef.current.opacity = pulse * opacity;
-      glowMaterialRef.current.opacity = pulse * opacity * 0.6;
+      
+      if (glowMaterialRef.current) {
+        glowMaterialRef.current.opacity = pulse * opacity * 0.6;
+      }
     }
   });
 
@@ -171,7 +169,6 @@ const Triangle = ({ points, color, glowColor, opacity = 0.15 }) => {
           transparent 
           opacity={opacity} 
           side={THREE.DoubleSide}
-          attach="material"
         />
       </mesh>
       
@@ -183,7 +180,6 @@ const Triangle = ({ points, color, glowColor, opacity = 0.15 }) => {
           transparent 
           opacity={opacity * 0.6} 
           side={THREE.DoubleSide}
-          attach="material"
         />
       </mesh>
     </group>
@@ -415,3 +411,4 @@ const ThreeBackground = () => {
 };
 
 export default ThreeBackground;
+
