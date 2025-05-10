@@ -1,4 +1,3 @@
-
 import React, { useRef, useMemo, useEffect, useState, Suspense } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls, Sphere, useTexture } from '@react-three/drei';
@@ -36,8 +35,8 @@ const FallbackBackground = ({ isDarkMode }) => {
 
 // Enhanced orb component with glow effect
 const Orb = ({ position, size = 0.08, color, speed = 1, glowColor }) => {
-  const meshRef = useRef(null);
-  const glowRef = useRef(null);
+  const meshRef = useRef();
+  const glowRef = useRef();
   const [baseSpeed] = useState(() => Math.random() * 0.7 + 0.5); // Random speed multiplier
   const [randomOffset] = useState(() => Math.random() * 1000); // Random offset for unique movement patterns
   
@@ -88,8 +87,8 @@ const Orb = ({ position, size = 0.08, color, speed = 1, glowColor }) => {
 
 // Enhanced line connecting two orbs
 const ConnectionLine = ({ start, end, color, glowColor, opacity = 0.3 }) => {
-  const ref = useRef();
-  const glowRef = useRef();
+  const ref = useRef(null);
+  const glowRef = useRef(null);
   
   const points = useMemo(() => {
     return [
@@ -117,26 +116,34 @@ const ConnectionLine = ({ start, end, color, glowColor, opacity = 0.3 }) => {
   return (
     <group>
       {/* Main line */}
-      <primitive object={new THREE.Line(lineGeometry, new THREE.LineBasicMaterial({ 
-        color: color, 
-        transparent: true, 
-        opacity: opacity 
-      }))} ref={ref} />
+      <line geometry={lineGeometry}>
+        <lineBasicMaterial 
+          attach="material"
+          color={color} 
+          transparent={true} 
+          opacity={opacity}
+          linewidth={2} // Increased line width
+        />
+      </line>
       
       {/* Glow line */}
-      <primitive object={new THREE.Line(lineGeometry, new THREE.LineBasicMaterial({ 
-        color: glowColor, 
-        transparent: true, 
-        opacity: opacity * 0.5 
-      }))} ref={glowRef} />
+      <line geometry={lineGeometry}>
+        <lineBasicMaterial 
+          attach="material"
+          color={glowColor} 
+          transparent={true} 
+          opacity={opacity * 0.5} 
+          linewidth={3} // Increased glow width
+        />
+      </line>
     </group>
   );
 };
 
 // Enhanced triangle with glowing effect
 const Triangle = ({ points, color, glowColor, opacity = 0.15 }) => {
-  const materialRef = useRef();
-  const glowMaterialRef = useRef();
+  const materialRef = useRef(null);
+  const glowMaterialRef = useRef(null);
   
   const geometry = useMemo(() => {
     const shape = new THREE.Shape();
@@ -166,7 +173,7 @@ const Triangle = ({ points, color, glowColor, opacity = 0.15 }) => {
         <meshBasicMaterial 
           ref={materialRef}
           color={color} 
-          transparent 
+          transparent={true} 
           opacity={opacity} 
           side={THREE.DoubleSide}
         />
@@ -177,7 +184,7 @@ const Triangle = ({ points, color, glowColor, opacity = 0.15 }) => {
         <meshBasicMaterial 
           ref={glowMaterialRef}
           color={glowColor} 
-          transparent 
+          transparent={true} 
           opacity={opacity * 0.6} 
           side={THREE.DoubleSide}
         />
@@ -186,8 +193,8 @@ const Triangle = ({ points, color, glowColor, opacity = 0.15 }) => {
   );
 };
 
-// Enhanced dynamic connections manager
-const DynamicConnections = ({ nodes, colors, maxDistance = 5, triangleDistance = 3 }) => {
+// Enhanced dynamic connections manager - ADJUSTED FOR MORE VISIBLE CONNECTIONS
+const DynamicConnections = ({ nodes, colors, maxDistance = 6, triangleDistance = 4 }) => {
   const [connections, setConnections] = useState([]);
   const [triangles, setTriangles] = useState([]);
   
@@ -233,7 +240,7 @@ const DynamicConnections = ({ nodes, colors, maxDistance = 5, triangleDistance =
           end={nodes[j]}
           color={colors.lineColor}
           glowColor={colors.glowColor}
-          opacity={0.4}
+          opacity={0.6} // Increased opacity for visibility
         />
       ))}
       
@@ -245,7 +252,7 @@ const DynamicConnections = ({ nodes, colors, maxDistance = 5, triangleDistance =
             points={trianglePoints}
             color={colors.triangleColor}
             glowColor={colors.glowGlowColor || colors.glowColor}
-            opacity={0.15}
+            opacity={0.25} // Increased opacity for visibility
           />
         );
       })}
@@ -262,8 +269,8 @@ function calculateDistance(point1, point2) {
   );
 }
 
-// Enhanced constellation component
-const Constellation = ({ count = 50, bounds = 10, colors }) => {
+// Enhanced constellation component - NODES CLOSER TOGETHER
+const Constellation = ({ count = 50, bounds = 8, colors }) => {
   // Generate random nodes with varying speeds
   const nodes = useMemo(() => {
     return Array.from({ length: count }, () => [
@@ -293,8 +300,8 @@ const Constellation = ({ count = 50, bounds = 10, colors }) => {
       <DynamicConnections 
         nodes={nodes} 
         colors={colors}
-        maxDistance={3.5} 
-        triangleDistance={2.5} 
+        maxDistance={3.5} // Adjusted for more connections
+        triangleDistance={2.5} // Adjusted for more triangles
       />
     </>
   );
@@ -302,17 +309,20 @@ const Constellation = ({ count = 50, bounds = 10, colors }) => {
 
 // Enhanced Scene component with proper theme integration
 const Scene = ({ isDarkMode }) => {
-  // Colors based on theme
+  // Updated colors based on theme - CONSISTENT BRAND COLORS
   const colors = useMemo(() => ({
-    orbColor: isDarkMode ? '#1E90FF' : '#0EA5E9',
-    glowColor: isDarkMode ? '#4169E1' : '#38BDF8',
-    lineColor: isDarkMode ? '#4682B4' : '#0EA5E9',
-    glowGlowColor: isDarkMode ? '#1E90FF' : '#38BDF8',
-    triangleColor: isDarkMode ? '#4169E1' : '#0EA5E9',
-    glowTriangleColor: isDarkMode ? '#6495ED' : '#38BDF8',
+    orbColor: isDarkMode ? '#0EA5E9' : '#0EA5E9', // Same color in both modes - brand aquamarine
+    glowColor: isDarkMode ? '#38BDF8' : '#38BDF8', // Same glow in both modes
+    lineColor: isDarkMode ? '#0EA5E9' : '#0EA5E9', // Consistent line color
+    glowGlowColor: isDarkMode ? '#38BDF8' : '#38BDF8', // Consistent glow
+    triangleColor: isDarkMode ? '#0EA5E9' : '#0EA5E9', // Consistent triangle color
+    glowTriangleColor: isDarkMode ? '#38BDF8' : '#38BDF8', // Consistent triangle glow
     ambientLight: isDarkMode ? '#222233' : '#f0f8ff',
     pointLight: isDarkMode ? '#6495ED' : '#0EA5E9',
   }), [isDarkMode]);
+
+  // Added controls configuration
+  const { gl, camera } = useThree();
 
   return (
     <>
@@ -320,11 +330,15 @@ const Scene = ({ isDarkMode }) => {
       <pointLight position={[0, 0, 10]} intensity={isDarkMode ? 0.7 : 0.5} color={colors.pointLight} />
       <Constellation count={60} bounds={15} colors={colors} />
       <OrbitControls
-        enableZoom={false}
+        args={[camera, gl.domElement]}
+        enableZoom={true}
         enablePan={false}
-        rotateSpeed={0.3}
-        autoRotate
-        autoRotateSpeed={0.3}
+        rotateSpeed={0.5} // Better rotation speed
+        autoRotate={false} // Disabled auto-rotate to allow user control
+        minDistance={5} // Minimum zoom distance
+        maxDistance={40} // Maximum zoom distance
+        enableDamping={true} // Adds inertia to controls
+        dampingFactor={0.1} // Damping factor for smooth movement
       />
     </>
   );
@@ -397,6 +411,9 @@ const ThreeBackground = () => {
           style={{ background: isDarkMode ? '#121212' : '#f8fafc' }}
           onCreated={({ gl }) => {
             gl.setClearColor(isDarkMode ? '#121212' : '#f8fafc');
+            
+            // Add touch support for mobile devices
+            gl.domElement.style.touchAction = 'none';
           }}
           shadows
           dpr={[1, 1.5]} // Limit DPR for better performance
@@ -411,4 +428,3 @@ const ThreeBackground = () => {
 };
 
 export default ThreeBackground;
-
