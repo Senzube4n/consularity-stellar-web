@@ -68,11 +68,13 @@ const ParticlesBackground = () => {
       particles.push(new Particle());
     }
     
-    // Line connection function
+    // Line connection and triangle filling function
     function connectParticles() {
       if (!ctx) return;
       
       const maxDistance = 180; // Increased max distance for more connections
+      
+      // First draw lines
       for (let a = 0; a < particles.length; a++) {
         for (let b = a; b < particles.length; b++) {
           const dx = particles[a].x - particles[b].x;
@@ -91,6 +93,42 @@ const ParticlesBackground = () => {
           }
         }
       }
+      
+      // Now find and fill triangles
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dist1 = getDistance(particles[i], particles[j]);
+          if (dist1 < maxDistance) {
+            for (let k = j + 1; k < particles.length; k++) {
+              const dist2 = getDistance(particles[j], particles[k]);
+              const dist3 = getDistance(particles[i], particles[k]);
+              
+              // If all three particles are within range of each other, draw a triangle
+              if (dist2 < maxDistance && dist3 < maxDistance) {
+                // Calculate average distance for opacity
+                const avgDist = (dist1 + dist2 + dist3) / 3;
+                const opacity = (1 - avgDist / maxDistance) * 0.15; // Lower opacity for the fills
+                
+                ctx.beginPath();
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(particles[j].x, particles[j].y);
+                ctx.lineTo(particles[k].x, particles[k].y);
+                ctx.closePath();
+                
+                ctx.fillStyle = `rgba(14, 165, 233, ${opacity})`; // Consistent with brand color, semi-transparent
+                ctx.fill();
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    // Helper function to calculate distance between particles
+    function getDistance(p1: Particle, p2: Particle) {
+      const dx = p1.x - p2.x;
+      const dy = p1.y - p2.y;
+      return Math.sqrt(dx * dx + dy * dy);
     }
     
     // Animation loop
