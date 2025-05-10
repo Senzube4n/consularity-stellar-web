@@ -1,10 +1,9 @@
-
 import React, { useRef, useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Server, Cloud, Database, Settings, BarChart, LineChart, PieChart } from "lucide-react";
+import { ArrowRight, Server, Cloud, Database, Settings } from "lucide-react";
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import ThreeBackground from '@/components/ThreeBackground';
+import ParticlesBackground from '@/components/ParticlesBackground';
 import ServiceCard from '@/components/ServiceCard';
 import FeatureColumn from '@/components/FeatureColumn';
 import ConnectorLine from '@/components/ConnectorLine';
@@ -54,7 +53,7 @@ const Index = () => {
         data-index={0}
         className="min-h-screen flex items-center justify-center relative overflow-hidden"
       >
-        <ThreeBackground />
+        <ParticlesBackground />
         
         <div className="consularity-container text-center z-10">
           <div className="max-w-3xl mx-auto">
