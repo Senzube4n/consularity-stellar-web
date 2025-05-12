@@ -22,6 +22,8 @@ export const ro = {
   'Expert-led Implementations': 'Implementări conduse de experți',
   'Scalable Infrastructure': 'Infrastructură scalabilă',
   'AI-Enhanced Operations': 'Operațiuni îmbunătățite cu AI',
+  'Our team brings deep expertise in business systems, ensuring smooth deployment and maximum value.':
+   'Echipa noastră aduce o vastă expertiză în sistemele de business, asigurând o implementare fără probleme și o valoare maximă.',
   
   // Project Timeline Section
   'Project Timeline': 'Cronologia Proiectului',

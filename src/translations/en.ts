@@ -22,6 +22,8 @@ export const en = {
   'Expert-led Implementations': 'Expert-led Implementations',
   'Scalable Infrastructure': 'Scalable Infrastructure',
   'AI-Enhanced Operations': 'AI-Enhanced Operations',
+  'Our team brings deep expertise in business systems, ensuring smooth deployment and maximum value.':
+   'Our team brings deep expertise in business systems, ensuring smooth deployment and maximum value.',
   
   // Project Timeline Section
   'Project Timeline': 'Project Timeline',
