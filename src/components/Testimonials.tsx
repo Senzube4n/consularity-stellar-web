@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -13,23 +13,29 @@ import { useLanguage } from '@/hooks/useLanguage';
  * 
  * Features:
  * - Responsive design (2 columns on desktop, 1 column on mobile)
- * - Scroll-triggered animations for each testimonial card
+ * - Bidirectional scroll-triggered animations for each testimonial card
  * - Hover effects for enhanced interactivity
  * - Translated content based on selected language
+ * - Staggered animation entry for a dynamic visual effect
  * 
  * Implementation Notes:
- * - Uses Intersection Observer API for scroll detection
+ * - Uses Intersection Observer API for scroll detection in both directions
  * - Implements staggered animations with delayed entries
  * - Optimizes for performance on mobile devices
+ * - Tracks scroll direction to apply appropriate animations
  * 
+ * References:
  * @see https://ui.shadcn.com/docs/components/avatar - Avatar component documentation
  * @see https://ui.shadcn.com/docs/components/card - Card component documentation
  * @see https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API - Intersection Observer API
+ * @see https://developer.mozilla.org/en-US/docs/Web/API/Element/animate - Web Animations API
  */
 const Testimonials = () => {
   const isMobile = useIsMobile();
   const { t } = useLanguage();
   const testimonialRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [scrollDirection, setScrollDirection] = useState<'down' | 'up'>('down');
+  const lastScrollY = useRef<number>(0);
   
   // Testimonial data - would typically come from a CMS or API
   const testimonials = [
@@ -67,8 +73,49 @@ const Testimonials = () => {
   const displayTestimonials = isMobile ? testimonials.slice(0, 2) : testimonials;
 
   /**
+   * Track scroll direction to apply the correct animation
+   * Uses a scroll event listener with throttling to minimize performance impact
+   */
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
+    // Function to handle scroll events
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Determine scroll direction
+      if (currentScrollY > lastScrollY.current) {
+        setScrollDirection('down');
+      } else {
+        setScrollDirection('up');
+      }
+      
+      // Update reference value
+      lastScrollY.current = currentScrollY;
+    };
+    
+    // Add scroll event listener with throttling
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+    
+    // Cleanup function
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  /**
    * Sets up the Intersection Observer to animate testimonial cards as they come into view
    * Uses a staggered animation approach for a more dynamic visual effect
+   * Handles both scroll up and scroll down directions
    */
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -76,14 +123,30 @@ const Testimonials = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry, i) => {
+          const element = entry.target as HTMLElement;
+          
           if (entry.isIntersecting) {
-            // Staggered animation with 100ms delay between items
-            setTimeout(() => {
-              entry.target.classList.add('opacity-100', 'translate-y-0');
-              entry.target.classList.remove('opacity-0', 'translate-y-8');
-            }, i * 100);
-            
-            observer.unobserve(entry.target);
+            // When scrolling down and element comes into view
+            if (scrollDirection === 'down') {
+              // Staggered animation with 100ms delay between items
+              setTimeout(() => {
+                element.classList.add('opacity-100', 'translate-y-0');
+                element.classList.remove('opacity-0', 'translate-y-8');
+              }, i * 100);
+            } 
+            // When scrolling up and element comes into view
+            else {
+              setTimeout(() => {
+                element.classList.add('opacity-100', 'translate-y-0');
+                element.classList.remove('opacity-0', 'translate-y-8');
+              }, i * 100);
+            }
+          } else {
+            // When element leaves viewport while scrolling up
+            if (scrollDirection === 'up' && entry.boundingClientRect.top > 0) {
+              element.classList.remove('opacity-100', 'translate-y-0');
+              element.classList.add('opacity-0', 'translate-y-8');
+            }
           }
         });
       },
@@ -103,7 +166,7 @@ const Testimonials = () => {
         if (item) observer.unobserve(item);
       });
     };
-  }, [displayTestimonials.length]);
+  }, [displayTestimonials.length, scrollDirection]);
 
   return (
     <div className="w-full">

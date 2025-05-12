@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Timeline, TimelineItem } from "@/components/ui/timeline";
 import { Clock, Clock1, Clock2, Clock3, Clock4, Clock5 } from "lucide-react";
@@ -15,23 +15,29 @@ import { useIsMobile } from '@/hooks/use-mobile';
  * 
  * Features:
  * - Responsive design adapting to different screen sizes
- * - Scroll-triggered animations for each timeline item
+ * - Bidirectional scroll-triggered animations for each timeline item
+ * - "Snake-like" laser hover animation for timeline items
  * - Intersection Observer API to detect when items come into view
  * - Phase-specific icons representing each milestone
  * 
  * Implementation Notes:
  * - Uses Intersection Observer API for efficient scroll detection
  * - Leverages CSS animations triggered by JavaScript
- * - Conditionally renders animations based on device capabilities
+ * - Implements bidirectional animations based on scroll direction
+ * - Custom laser animation using CSS keyframes and gradients
  * 
+ * References:
  * @see https://ui.shadcn.com/docs/components/card - Card component documentation
  * @see https://lucide.dev/icons - Lucide icons documentation
  * @see https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API - Intersection Observer API
+ * @see https://css-tricks.com/snippets/css/keyframe-animation-syntax/ - CSS Keyframe Animation Syntax
  */
 const ProjectTimeline = () => {
   const { t } = useLanguage();
   const isMobile = useIsMobile();
   const timelineItemsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const [scrollDirection, setScrollDirection] = useState<'down' | 'up'>('down');
+  const lastScrollY = useRef<number>(0);
   
   // Project phases data with translations
   const projectPhases = [
@@ -74,27 +80,80 @@ const ProjectTimeline = () => {
   ];
 
   /**
-   * Sets up the Intersection Observer to animate timeline items as they come into view
-   * Uses a threshold of 0.2 (20% visibility) to trigger the animation
+   * Track scroll direction to apply the correct animation
+   * Uses a scroll event listener with throttling to minimize performance impact
    */
   useEffect(() => {
-    // Skip animation setup on mobile devices for better performance
+    if (typeof window === 'undefined') return;
+    
+    // Function to handle scroll events
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Determine scroll direction
+      if (currentScrollY > lastScrollY.current) {
+        setScrollDirection('down');
+      } else {
+        setScrollDirection('up');
+      }
+      
+      // Update reference value
+      lastScrollY.current = currentScrollY;
+    };
+    
+    // Add scroll event listener with throttling
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+    
+    // Cleanup function
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+  
+  /**
+   * Sets up the Intersection Observer to animate timeline items as they come into view
+   * Handles both scroll up and scroll down animations
+   */
+  useEffect(() => {
+    // Skip animation setup if window is not defined
     if (typeof window === 'undefined') return;
     
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          // Add animation class when the element comes into view
+          const element = entry.target as HTMLElement;
+          
+          // Handle animation based on intersection and scroll direction
           if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-in', 'opacity-100');
-            entry.target.classList.remove('opacity-0', 'translate-y-4');
-            
-            // Optional: stop observing after animation is triggered
-            observer.unobserve(entry.target);
+            // When scrolling down and element comes into view
+            if (scrollDirection === 'down') {
+              element.classList.add('animate-fade-in', 'opacity-100');
+              element.classList.remove('opacity-0', 'translate-y-4');
+            } 
+            // When scrolling up and element comes into view
+            else {
+              element.classList.add('animate-fade-in', 'opacity-100');
+              element.classList.remove('opacity-0', 'translate-y-4');
+            }
+          } else {
+            // When element leaves viewport while scrolling up
+            if (scrollDirection === 'up' && entry.boundingClientRect.top > 0) {
+              element.classList.remove('animate-fade-in', 'opacity-100');
+              element.classList.add('opacity-0', 'translate-y-4');
+            }
           }
         });
       },
-      { threshold: 0.2 } // Trigger when 20% of the item is visible
+      { threshold: 0.2, rootMargin: '0px 0px -50px 0px' } // Trigger when 20% of the item is visible
     );
     
     // Observe all timeline items
@@ -112,7 +171,7 @@ const ProjectTimeline = () => {
         if (item) observer.unobserve(item);
       });
     };
-  }, []);
+  }, [scrollDirection]);
 
   return (
     <div className="w-full">
@@ -125,7 +184,7 @@ const ProjectTimeline = () => {
               ref={el => timelineItemsRef.current[index] = el}
             >
               <TimelineItem.Indicator>
-                <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground transition-all duration-500 hover:scale-110">
+                <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground transition-all duration-500 hover:scale-110 group-hover:animate-pulse-glow">
                   {phase.icon}
                 </div>
               </TimelineItem.Indicator>
