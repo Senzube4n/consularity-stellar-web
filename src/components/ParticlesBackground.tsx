@@ -1,10 +1,29 @@
 
 import { useEffect, useRef } from 'react';
 import { useTheme } from '@/hooks/useTheme';
+import { useIsMobile } from '@/hooks/use-mobile';
 
+/**
+ * ParticlesBackground Component
+ * 
+ * Creates an interactive animated background with connected particles.
+ * The particles move randomly and form connections (lines) when they are close to each other.
+ * When three particles are close enough, triangles are formed and filled.
+ * 
+ * Features:
+ * - Responsive canvas that adapts to window size
+ * - Theme-aware rendering (adapts to light/dark mode)
+ * - Mobile optimization with reduced particle count
+ * - Interactive mouse control to move particles
+ * - Triangle filling between connected particles
+ * 
+ * @see https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API - Canvas API documentation
+ * @see https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D - Canvas 2D context
+ */
 const ParticlesBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { theme } = useTheme();
+  const isMobile = useIsMobile();
   
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -13,7 +32,10 @@ const ParticlesBackground = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Resize handler
+    /**
+     * Handle window resize events
+     * Updates canvas dimensions to match window size
+     */
     const handleResize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -22,7 +44,11 @@ const ParticlesBackground = () => {
     window.addEventListener('resize', handleResize);
     handleResize();
     
-    // Particle class
+    /**
+     * Particle class
+     * 
+     * Defines properties and methods for individual particles
+     */
     class Particle {
       x: number;
       y: number;
@@ -40,10 +66,14 @@ const ParticlesBackground = () => {
         this.color = '#0EA5E9'; // Consistent aquamarine color in both modes
       }
       
+      /**
+       * Update particle position and handle boundary conditions
+       */
       update() {
         this.x += this.speedX;
         this.y += this.speedY;
         
+        // Wrap particles around screen edges
         if (this.x > canvas.width) this.x = 0;
         else if (this.x < 0) this.x = canvas.width;
         
@@ -51,6 +81,9 @@ const ParticlesBackground = () => {
         else if (this.y < 0) this.y = canvas.height;
       }
       
+      /**
+       * Draw particle on canvas
+       */
       draw() {
         if (!ctx) return;
         ctx.beginPath();
@@ -60,19 +93,26 @@ const ParticlesBackground = () => {
       }
     }
     
-    // Create particles
-    const particleCount = 70; // Increased particle count for more connections
+    // Create particles - use fewer particles on mobile
+    const particleCount = isMobile ? 25 : 70; // Reduce particle count on mobile devices
     const particles: Particle[] = [];
     
     for (let i = 0; i < particleCount; i++) {
       particles.push(new Particle());
     }
     
-    // Line connection and triangle filling function
+    /**
+     * Connect particles with lines and fill triangles
+     * 
+     * Draws lines between particles that are within maxDistance of each other
+     * Fills triangles when three particles form a triangle within maxDistance
+     * 
+     * @see https://en.wikipedia.org/wiki/Delaunay_triangulation - Concept of triangulation
+     */
     function connectParticles() {
       if (!ctx) return;
       
-      const maxDistance = 180; // Increased max distance for more connections
+      const maxDistance = isMobile ? 120 : 180; // Reduced connection distance for mobile
       
       // First draw lines
       for (let a = 0; a < particles.length; a++) {
@@ -124,14 +164,27 @@ const ParticlesBackground = () => {
       }
     }
     
-    // Helper function to calculate distance between particles
+    /**
+     * Helper function to calculate distance between particles
+     * 
+     * @param p1 - First particle
+     * @param p2 - Second particle
+     * @returns Distance between particles
+     */
     function getDistance(p1: Particle, p2: Particle) {
       const dx = p1.x - p2.x;
       const dy = p1.y - p2.y;
       return Math.sqrt(dx * dx + dy * dy);
     }
     
-    // Animation loop
+    /**
+     * Animation loop
+     * 
+     * Clear canvas, update and draw particles, connect particles
+     * Runs recursively using requestAnimationFrame for smooth animation
+     * 
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame
+     */
     function animate() {
       if (!ctx) return;
       
@@ -155,7 +208,11 @@ const ParticlesBackground = () => {
     let lastX = 0;
     let lastY = 0;
     
-    // Mouse interaction to push particles
+    /**
+     * Mouse interaction to push particles
+     * 
+     * Allows user to interact with particles by dragging mouse
+     */
     canvas.addEventListener('mousedown', (e) => {
       isMouseDown = true;
       lastX = e.offsetX;
@@ -186,20 +243,53 @@ const ParticlesBackground = () => {
       isMouseDown = false;
     });
     
+    // Touch events for mobile devices
+    canvas.addEventListener('touchstart', (e) => {
+      if (e.touches.length > 0) {
+        isMouseDown = true;
+        lastX = e.touches[0].clientX;
+        lastY = e.touches[0].clientY;
+      }
+    });
+    
+    canvas.addEventListener('touchmove', (e) => {
+      if (!isMouseDown || e.touches.length === 0) return;
+      
+      const dx = e.touches[0].clientX - lastX;
+      const dy = e.touches[0].clientY - lastY;
+      
+      // Move particles based on touch movement
+      particles.forEach(particle => {
+        particle.x += dx * 0.05;
+        particle.y += dy * 0.05;
+      });
+      
+      lastX = e.touches[0].clientX;
+      lastY = e.touches[0].clientY;
+    });
+    
+    canvas.addEventListener('touchend', () => {
+      isMouseDown = false;
+    });
+    
     return () => {
       window.removeEventListener('resize', handleResize);
       canvas.removeEventListener('mousedown', () => {});
       canvas.removeEventListener('mousemove', () => {});
       canvas.removeEventListener('mouseup', () => {});
       canvas.removeEventListener('mouseleave', () => {});
+      canvas.removeEventListener('touchstart', () => {});
+      canvas.removeEventListener('touchmove', () => {});
+      canvas.removeEventListener('touchend', () => {});
     };
-  }, [theme]);
+  }, [theme, isMobile]); // Added isMobile as dependency
   
   return (
     <canvas 
       ref={canvasRef} 
       className="absolute inset-0 -z-10 cursor-move"
       style={{ opacity: 0.9 }} // Increased opacity for better visibility
+      aria-hidden="true" // Improve accessibility by marking as decorative
     />
   );
 };

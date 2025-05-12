@@ -12,6 +12,8 @@ import ConnectorLine from '@/components/ConnectorLine';
 import { useLanguage } from '@/hooks/useLanguage';
 import ImpactMetrics from '@/components/ImpactMetrics';
 import PerformanceCharts from '@/components/PerformanceCharts';
+import ProjectTimeline from '@/components/ProjectTimeline';
+import Testimonials from '@/components/Testimonials';
 
 /**
  * Index Page Component
@@ -217,13 +219,55 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Our Impact Section */}
+      {/* Project Timeline Section */}
       <section
         ref={el => sectionsRef.current[3] = el}
         data-index={3}
         className="py-24 relative"
       >
         <ConnectorLine active={activeSection === 3} />
+        
+        <div className="consularity-container">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('Project Timeline')}</h2>
+            <div className="w-20 h-1 bg-primary mx-auto" />
+            <p className="text-lg text-muted-foreground mt-6 max-w-3xl mx-auto">
+              Our proven implementation methodology ensures a smooth, predictable journey from concept to completion
+            </p>
+          </div>
+          
+          <ProjectTimeline />
+        </div>
+      </section>
+      
+      {/* Testimonials Section */}
+      <section
+        ref={el => sectionsRef.current[4] = el}
+        data-index={4}
+        className="py-24 bg-gray-50/50 dark:bg-gray-900/30 relative"
+      >
+        <ConnectorLine active={activeSection === 4} />
+        
+        <div className="consularity-container">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('Client Testimonials')}</h2>
+            <div className="w-20 h-1 bg-primary mx-auto" />
+            <p className="text-lg text-muted-foreground mt-6 max-w-3xl mx-auto">
+              Don't just take our word for it. Hear what our clients have to say about working with Consularity.
+            </p>
+          </div>
+          
+          <Testimonials />
+        </div>
+      </section>
+      
+      {/* Our Impact Section */}
+      <section
+        ref={el => sectionsRef.current[5] = el}
+        data-index={5}
+        className="py-24 relative"
+      >
+        <ConnectorLine active={activeSection === 5} />
         
         <div className="consularity-container">
           <div className="text-center mb-16">
@@ -242,11 +286,11 @@ const Index = () => {
       
       {/* Impact Metrics Section */}
       <section
-        ref={el => sectionsRef.current[4] = el}
-        data-index={4}
+        ref={el => sectionsRef.current[6] = el}
+        data-index={6}
         className="py-24 bg-gray-50/50 dark:bg-gray-900/30 relative"
       >
-        <ConnectorLine active={activeSection === 4} />
+        <ConnectorLine active={activeSection === 6} />
         
         <div className="consularity-container">
           <div className="text-center mb-16">
@@ -263,11 +307,11 @@ const Index = () => {
       
       {/* CTA Section */}
       <section
-        ref={el => sectionsRef.current[5] = el}
-        data-index={5}
+        ref={el => sectionsRef.current[7] = el}
+        data-index={7}
         className="py-24 relative"
       >
-        <ConnectorLine active={activeSection === 5} />
+        <ConnectorLine active={activeSection === 7} />
         
         <div className="consularity-container">
           <div className="max-w-3xl mx-auto text-center">
