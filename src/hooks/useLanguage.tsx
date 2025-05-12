@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 // Available languages
@@ -83,7 +82,64 @@ const translations: Record<Language, Record<string, string>> = {
     'All rights reserved.': 'All rights reserved.',
     'Privacy Policy': 'Privacy Policy',
     'Terms of Service': 'Terms of Service',
-    'Ready to transform your business with cutting-edge technology?': 'Ready to transform your business with cutting-edge technology?'
+    'Ready to transform your business with cutting-edge technology?': 'Ready to transform your business with cutting-edge technology?',
+    
+    // About Page
+    'We\'re a team of technology experts dedicated to transforming businesses through innovative AI, cloud, and ERP solutions.': 
+      'We\'re a team of technology experts dedicated to transforming businesses through innovative AI, cloud, and ERP solutions.',
+    'Our Mission': 'Our Mission',
+    'At Consularity, we combine deep technical expertise with business acumen to deliver transformative technology solutions that drive tangible results for our clients.': 
+      'At Consularity, we combine deep technical expertise with business acumen to deliver transformative technology solutions that drive tangible results for our clients.',
+    'We believe that the convergence of AI, cloud technology, and business systems creates unprecedented opportunities for businesses of all sizes.': 
+      'We believe that the convergence of AI, cloud technology, and business systems creates unprecedented opportunities for businesses of all sizes.',
+    'Our mission is to make these cutting-edge technologies accessible and valuable to small and midsize enterprises, helping them compete and thrive in an increasingly digital world.': 
+      'Our mission is to make these cutting-edge technologies accessible and valuable to small and midsize enterprises, helping them compete and thrive in an increasingly digital world.',
+    'Our Values': 'Our Values',
+    'Excellence': 'Excellence',
+    'We strive for excellence in everything we do, from code quality to client communication.': 
+      'We strive for excellence in everything we do, from code quality to client communication.',
+    'Innovation': 'Innovation',
+    'We constantly explore new technologies and approaches to deliver the best solutions.': 
+      'We constantly explore new technologies and approaches to deliver the best solutions.',
+    'Client Success': 'Client Success',
+    'Our success is measured by the success of our clients. We\'re partners in your journey.': 
+      'Our success is measured by the success of our clients. We\'re partners in your journey.',
+    'Our Journey': 'Our Journey',
+    'Company Founded': 'Company Founded',
+    'Consularity was established with the vision of bringing enterprise-grade technology to small and midsize businesses.': 
+      'Consularity was established with the vision of bringing enterprise-grade technology to small and midsize businesses.',
+    'AWS Partnership': 'AWS Partnership',
+    'Became an official AWS Partner, expanding our cloud services capabilities to deliver more value to our clients.': 
+      'Became an official AWS Partner, expanding our cloud services capabilities to deliver more value to our clients.',
+    'AI Integration Launch': 'AI Integration Launch',
+    'Launched our AI reporting and automation services, bringing cutting-edge machine learning to business operations.': 
+      'Launched our AI reporting and automation services, bringing cutting-edge machine learning to business operations.',
+    'International Expansion': 'International Expansion',
+    'Expanded our services to new regions, helping more businesses leverage the power of technology.': 
+      'Expanded our services to new regions, helping more businesses leverage the power of technology.',
+    
+    // Contact Page
+    'Have questions? Ready to start your digital transformation? Get in touch with our team.': 
+      'Have questions? Ready to start your digital transformation? Get in touch with our team.',
+    'Send us a message': 'Send us a message',
+    'Name': 'Name',
+    'Your name': 'Your name',
+    'Email': 'Email',
+    'your.email@example.com': 'your.email@example.com',
+    'Subject': 'Subject',
+    'How can we help?': 'How can we help?',
+    'Message': 'Message',
+    'Tell us about your project or inquiry...': 'Tell us about your project or inquiry...',
+    'Send Message': 'Send Message',
+    'Contact Information': 'Contact Information',
+    'Phone': 'Phone',
+    'Office Hours': 'Office Hours',
+    'Monday - Friday:': 'Monday - Friday:',
+    '9:00 AM - 6:00 PM CET': '9:00 AM - 6:00 PM CET',
+    'Saturday - Sunday:': 'Saturday - Sunday:',
+    'Closed': 'Closed',
+    'Message Sent': 'Message Sent',
+    'We\'ll get back to you as soon as possible.': 'We\'ll get back to you as soon as possible.'
   },
   nl: {
     // Navigation & General UI
@@ -194,7 +250,7 @@ const translations: Record<Language, Record<string, string>> = {
     'Testing': 'Testare',
     'Deployment': 'Implementare',
     'Post-Implementation Support': 'Suport post-implementare',
-    'Weeks 1-2': 'Săptămânile 1-2',
+    'Weeks 1-2': 'Săpt��mânile 1-2',
     'Weeks 3-4': 'Săptămânile 3-4',
     'Weeks 5-8': 'Săptămânile 5-8',
     'Weeks 9-10': 'Săptămânile 9-10',
