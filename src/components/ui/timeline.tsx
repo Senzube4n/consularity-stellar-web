@@ -35,30 +35,17 @@ Timeline.displayName = "Timeline";
  */
 interface TimelineItemProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-const TimelineItem = React.forwardRef<HTMLDivElement, TimelineItemProps>(
-  ({ className, children, ...props }, ref) => {
-    return (
-      <div
-        ref={ref}
-        className={cn("relative pl-8", className)}
-        {...props}
-      >
-        {children}
-      </div>
-    );
-  }
-);
-TimelineItem.displayName = "TimelineItem";
-
 /**
  * TimelineItemIndicator Component
  * 
  * The visual indicator on the timeline that represents the event.
  * Typically contains an icon, number, or other visual element.
  */
+interface TimelineItemIndicatorProps extends React.HTMLAttributes<HTMLDivElement> {}
+
 const TimelineItemIndicator = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
+  TimelineItemIndicatorProps
 >(({ className, children, ...props }, ref) => {
   return (
     <div
@@ -80,9 +67,11 @@ TimelineItemIndicator.displayName = "TimelineItemIndicator";
  * 
  * The content associated with a timeline item. Contains information about the event.
  */
+interface TimelineItemContentProps extends React.HTMLAttributes<HTMLDivElement> {}
+
 const TimelineItemContent = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
+  TimelineItemContentProps
 >(({ className, children, ...props }, ref) => {
   return (
     <div ref={ref} className={cn("pt-1", className)} {...props}>
@@ -92,7 +81,31 @@ const TimelineItemContent = React.forwardRef<
 });
 TimelineItemContent.displayName = "TimelineItemContent";
 
-// Attach sub-components to TimelineItem
+// Define the TimelineItem component with properly typed subcomponents
+type TimelineItemComponentType = React.ForwardRefExoticComponent<
+  TimelineItemProps & React.RefAttributes<HTMLDivElement>
+> & {
+  Indicator: typeof TimelineItemIndicator;
+  Content: typeof TimelineItemContent;
+};
+
+const TimelineItem = React.forwardRef<HTMLDivElement, TimelineItemProps>(
+  ({ className, children, ...props }, ref) => {
+    return (
+      <div
+        ref={ref}
+        className={cn("relative pl-8", className)}
+        {...props}
+      >
+        {children}
+      </div>
+    );
+  }
+) as TimelineItemComponentType;
+
+TimelineItem.displayName = "TimelineItem";
+
+// Properly attach subcomponents to TimelineItem
 TimelineItem.Indicator = TimelineItemIndicator;
 TimelineItem.Content = TimelineItemContent;
 
