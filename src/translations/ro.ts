@@ -1,3 +1,4 @@
+
 // Romanian translations
 
 export const ro = {
@@ -153,8 +154,6 @@ export const ro = {
   'Cookie Settings': 'Setări Cookie',
   
   // Privacy Policy and Terms
-  'Privacy Policy': 'Politica de Confidențialitate',
-  'Terms of Service': 'Termeni și Condiții',
   'Introduction': 'Introducere',
   'The Data We Collect': 'Datele Pe Care Le Colectăm',
   'How We Use Your Data': 'Cum Folosim Datele Dumneavoastră',
@@ -169,4 +168,46 @@ export const ro = {
   'Links': 'Linkuri',
   'Modifications': 'Modificări',
   'Governing Law': 'Legea Aplicabilă',
+  
+  // New additions for GDPR and analytics
+  'At Consularity, we respect your privacy and are committed to protecting your personal data. This privacy policy will inform you about how we look after your personal data when you visit our website and tell you about your privacy rights and how the law protects you.': 
+    'La Consularity, vă respectăm confidențialitatea și ne angajăm să vă protejăm datele personale. Această politică de confidențialitate vă va informa despre modul în care ne ocupăm de datele dvs. personale când vizitați site-ul nostru web și vă va spune despre drepturile dvs. de confidențialitate și cum vă protejează legea.',
+  'We may collect, use, store and transfer different kinds of personal data about you which we have grouped together as follows:': 
+    'Putem colecta, utiliza, stoca și transfera diferite tipuri de date personale despre dumneavoastră pe care le-am grupat după cum urmează:',
+  'includes first name, last name, username or similar identifier': 'include prenume, nume, nume de utilizator sau identificator similar',
+  'includes email address and telephone numbers': 'include adresa de email și numerele de telefon',
+  'includes internet protocol (IP) address, your login data, browser type and version, time zone setting and location, browser plug-in types and versions, operating system and platform, and other technology on the devices you use to access this website': 
+    'include adresa de protocol internet (IP), datele dvs. de conectare, tipul și versiunea browserului, setarea fusului orar și locația, tipurile și versiunile plugin-urilor browserului, sistemul de operare și platforma, și alte tehnologii de pe dispozitivele pe care le utilizați pentru a accesa acest site web',
+  'includes information about how you use our website, products and services': 
+    'include informații despre cum utilizați site-ul nostru web, produsele și serviciile',
+  'We will only use your personal data when the law allows us to. Most commonly, we will use your personal data in the following circumstances:': 
+    'Vom folosi datele dvs. personale doar când legea ne permite să o facem. Cel mai frecvent, vom folosi datele dvs. personale în următoarele circumstanțe:',
+  'Where we need to perform the contract we are about to enter into or have entered into with you.': 
+    'Când trebuie să executăm contractul pe care urmează să îl încheiem sau l-am încheiat cu dumneavoastră.',
+  'Where it is necessary for our legitimate interests (or those of a third party) and your interests and fundamental rights do not override those interests.': 
+    'Când este necesar pentru interesele noastre legitime (sau cele ale unei terțe părți) și interesele și drepturile dvs. fundamentale nu prevalează asupra acelor interese.',
+  'Where we need to comply with a legal obligation.': 
+    'Când trebuie să respectăm o obligație legală.',
+  'We use Google Analytics to analyze the use of our website. Google Analytics gathers information about website use by means of cookies. The information gathered is used to create reports about the use of our website.': 
+    'Folosim Google Analytics pentru a analiza utilizarea site-ului nostru web. Google Analytics colectează informații despre utilizarea site-ului prin intermediul cookie-urilor. Informațiile colectate sunt utilizate pentru a crea rapoarte despre utilizarea site-ului nostru web.',
+  'Google\'s privacy policy is available at:': 
+    'Politica de confidențialitate Google este disponibilă la:',
+  'Under certain circumstances, you have rights under data protection laws in relation to your personal data, including the right to:': 
+    'În anumite circumstanțe, aveți drepturi conform legilor de protecție a datelor în legătură cu datele dvs. personale, inclusiv dreptul de a:',
+  'Request access to your personal data': 
+    'Solicita accesul la datele dvs. personale',
+  'Request correction of your personal data': 
+    'Solicita corectarea datelor dvs. personale',
+  'Request erasure of your personal data': 
+    'Solicita ștergerea datelor dvs. personale',
+  'Object to processing of your personal data': 
+    'Obiecta la prelucrarea datelor dvs. personale',
+  'Request restriction of processing your personal data': 
+    'Solicita restricționarea prelucrării datelor dvs. personale',
+  'Request transfer of your personal data': 
+    'Solicita transferul datelor dvs. personale',
+  'Right to withdraw consent': 
+    'Dreptul de a vă retrage consimțământul',
+  'If you have any questions about this privacy policy or our privacy practices, please contact us at:': 
+    'Dacă aveți întrebări despre această politică de confidențialitate sau practicile noastre de confidențialitate, vă rugăm să ne contactați la:'
 };

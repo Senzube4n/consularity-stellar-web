@@ -1,3 +1,4 @@
+
 // English translations
 
 export const en = {
@@ -153,8 +154,6 @@ export const en = {
   'Cookie Settings': 'Cookie Settings',
   
   // Privacy Policy and Terms
-  'Privacy Policy': 'Privacy Policy',
-  'Terms of Service': 'Terms of Service',
   'Introduction': 'Introduction',
   'The Data We Collect': 'The Data We Collect',
   'How We Use Your Data': 'How We Use Your Data',
@@ -169,4 +168,46 @@ export const en = {
   'Links': 'Links',
   'Modifications': 'Modifications',
   'Governing Law': 'Governing Law',
+  
+  // New additions for GDPR and analytics
+  'At Consularity, we respect your privacy and are committed to protecting your personal data. This privacy policy will inform you about how we look after your personal data when you visit our website and tell you about your privacy rights and how the law protects you.': 
+    'At Consularity, we respect your privacy and are committed to protecting your personal data. This privacy policy will inform you about how we look after your personal data when you visit our website and tell you about your privacy rights and how the law protects you.',
+  'We may collect, use, store and transfer different kinds of personal data about you which we have grouped together as follows:': 
+    'We may collect, use, store and transfer different kinds of personal data about you which we have grouped together as follows:',
+  'includes first name, last name, username or similar identifier': 'includes first name, last name, username or similar identifier',
+  'includes email address and telephone numbers': 'includes email address and telephone numbers',
+  'includes internet protocol (IP) address, your login data, browser type and version, time zone setting and location, browser plug-in types and versions, operating system and platform, and other technology on the devices you use to access this website': 
+    'includes internet protocol (IP) address, your login data, browser type and version, time zone setting and location, browser plug-in types and versions, operating system and platform, and other technology on the devices you use to access this website',
+  'includes information about how you use our website, products and services': 
+    'includes information about how you use our website, products and services',
+  'We will only use your personal data when the law allows us to. Most commonly, we will use your personal data in the following circumstances:': 
+    'We will only use your personal data when the law allows us to. Most commonly, we will use your personal data in the following circumstances:',
+  'Where we need to perform the contract we are about to enter into or have entered into with you.': 
+    'Where we need to perform the contract we are about to enter into or have entered into with you.',
+  'Where it is necessary for our legitimate interests (or those of a third party) and your interests and fundamental rights do not override those interests.': 
+    'Where it is necessary for our legitimate interests (or those of a third party) and your interests and fundamental rights do not override those interests.',
+  'Where we need to comply with a legal obligation.': 
+    'Where we need to comply with a legal obligation.',
+  'We use Google Analytics to analyze the use of our website. Google Analytics gathers information about website use by means of cookies. The information gathered is used to create reports about the use of our website.': 
+    'We use Google Analytics to analyze the use of our website. Google Analytics gathers information about website use by means of cookies. The information gathered is used to create reports about the use of our website.',
+  'Google\'s privacy policy is available at:': 
+    'Google\'s privacy policy is available at:',
+  'Under certain circumstances, you have rights under data protection laws in relation to your personal data, including the right to:': 
+    'Under certain circumstances, you have rights under data protection laws in relation to your personal data, including the right to:',
+  'Request access to your personal data': 
+    'Request access to your personal data',
+  'Request correction of your personal data': 
+    'Request correction of your personal data',
+  'Request erasure of your personal data': 
+    'Request erasure of your personal data',
+  'Object to processing of your personal data': 
+    'Object to processing of your personal data',
+  'Request restriction of processing your personal data': 
+    'Request restriction of processing your personal data',
+  'Request transfer of your personal data': 
+    'Request transfer of your personal data',
+  'Right to withdraw consent': 
+    'Right to withdraw consent',
+  'If you have any questions about this privacy policy or our privacy practices, please contact us at:': 
+    'If you have any questions about this privacy policy or our privacy practices, please contact us at:'
 };

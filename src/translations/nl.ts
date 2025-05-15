@@ -1,3 +1,4 @@
+
 // Dutch translations
 
 export const nl = {
@@ -153,8 +154,6 @@ export const nl = {
   'Cookie Settings': 'Cookie Instellingen',
   
   // Privacy Policy and Terms
-  'Privacy Policy': 'Privacybeleid',
-  'Terms of Service': 'Servicevoorwaarden',
   'Introduction': 'Introductie',
   'The Data We Collect': 'De Gegevens Die We Verzamelen',
   'How We Use Your Data': 'Hoe We Uw Gegevens Gebruiken',
@@ -169,4 +168,46 @@ export const nl = {
   'Links': 'Links',
   'Modifications': 'Wijzigingen',
   'Governing Law': 'Toepasselijk Recht',
+  
+  // New additions for GDPR and analytics
+  'At Consularity, we respect your privacy and are committed to protecting your personal data. This privacy policy will inform you about how we look after your personal data when you visit our website and tell you about your privacy rights and how the law protects you.': 
+    'Bij Consularity respecteren wij uw privacy en zetten wij ons in om uw persoonlijke gegevens te beschermen. Dit privacybeleid informeert u over hoe wij omgaan met uw persoonlijke gegevens wanneer u onze website bezoekt en vertelt u over uw privacyrechten en hoe de wet u beschermt.',
+  'We may collect, use, store and transfer different kinds of personal data about you which we have grouped together as follows:': 
+    'Wij kunnen verschillende soorten persoonlijke gegevens over u verzamelen, gebruiken, opslaan en overdragen, die we als volgt hebben gegroepeerd:',
+  'includes first name, last name, username or similar identifier': 'bevat voornaam, achternaam, gebruikersnaam of soortgelijke identificatie',
+  'includes email address and telephone numbers': 'bevat e-mailadres en telefoonnummers',
+  'includes internet protocol (IP) address, your login data, browser type and version, time zone setting and location, browser plug-in types and versions, operating system and platform, and other technology on the devices you use to access this website': 
+    'bevat internetprotocol (IP) -adres, uw inloggegevens, browsertype en -versie, tijdzone-instelling en locatie, browserplug-intypes en -versies, besturingssysteem en platform, en andere technologie op de apparaten die u gebruikt om toegang te krijgen tot deze website',
+  'includes information about how you use our website, products and services': 
+    'bevat informatie over hoe u onze website, producten en diensten gebruikt',
+  'We will only use your personal data when the law allows us to. Most commonly, we will use your personal data in the following circumstances:': 
+    'Wij zullen uw persoonlijke gegevens alleen gebruiken wanneer de wet ons dat toestaat. Meestal zullen we uw persoonlijke gegevens in de volgende omstandigheden gebruiken:',
+  'Where we need to perform the contract we are about to enter into or have entered into with you.': 
+    'Wanneer we het contract moeten uitvoeren dat we op het punt staan met u aan te gaan of zijn aangegaan.',
+  'Where it is necessary for our legitimate interests (or those of a third party) and your interests and fundamental rights do not override those interests.': 
+    'Waar het noodzakelijk is voor onze legitieme belangen (of die van een derde partij) en uw belangen en fundamentele rechten die belangen niet overstijgen.',
+  'Where we need to comply with a legal obligation.': 
+    'Waar we moeten voldoen aan een wettelijke verplichting.',
+  'We use Google Analytics to analyze the use of our website. Google Analytics gathers information about website use by means of cookies. The information gathered is used to create reports about the use of our website.': 
+    'We gebruiken Google Analytics om het gebruik van onze website te analyseren. Google Analytics verzamelt informatie over websitegebruik door middel van cookies. De verzamelde informatie wordt gebruikt om rapporten over het gebruik van onze website te maken.',
+  'Google\'s privacy policy is available at:': 
+    'Het privacybeleid van Google is beschikbaar op:',
+  'Under certain circumstances, you have rights under data protection laws in relation to your personal data, including the right to:': 
+    'Onder bepaalde omstandigheden heeft u rechten onder de wetgeving voor gegevensbescherming met betrekking tot uw persoonlijke gegevens, inclusief het recht om:',
+  'Request access to your personal data': 
+    'Toegang tot uw persoonlijke gegevens verzoeken',
+  'Request correction of your personal data': 
+    'Correctie van uw persoonlijke gegevens verzoeken',
+  'Request erasure of your personal data': 
+    'Verwijdering van uw persoonlijke gegevens verzoeken',
+  'Object to processing of your personal data': 
+    'Bezwaar maken tegen de verwerking van uw persoonlijke gegevens',
+  'Request restriction of processing your personal data': 
+    'Beperking van de verwerking van uw persoonlijke gegevens verzoeken',
+  'Request transfer of your personal data': 
+    'Overdracht van uw persoonlijke gegevens verzoeken',
+  'Right to withdraw consent': 
+    'Recht om toestemming in te trekken',
+  'If you have any questions about this privacy policy or our privacy practices, please contact us at:': 
+    'Als u vragen heeft over dit privacybeleid of onze privacypraktijken, neem dan contact met ons op via:'
 };
