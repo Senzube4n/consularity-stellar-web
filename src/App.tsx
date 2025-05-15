@@ -12,8 +12,8 @@ import './App.css';
 import CookieConsent from './components/CookieConsent';
 
 const App = () => {
-  // Initialize theme
-  useTheme();
+  // Initialize theme (this is fine as we now have ThemeProvider in main.tsx)
+  const { theme } = useTheme();
   
   return (
     <Router>
