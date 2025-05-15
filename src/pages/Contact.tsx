@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -8,67 +8,20 @@ import { useToast } from "@/hooks/use-toast";
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useLanguage } from '@/hooks/useLanguage';
-import { useForm } from "react-hook-form";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-
-// Form schema definition
-const formSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-  email: z.string().email({ message: "Please enter a valid email address." }),
-  subject: z.string().min(3, { message: "Subject must be at least 3 characters." }),
-  message: z.string().min(10, { message: "Message must be at least 10 characters." }),
-});
-
-type FormData = z.infer<typeof formSchema>;
 
 const Contact = () => {
   const { toast } = useToast();
   const { t } = useLanguage();
-  const [isSubmitting, setIsSubmitting] = useState(false);
   
-  // Initialize form with validation
-  const form = useForm<FormData>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      subject: "",
-      message: ""
-    }
-  });
-  
-  const onSubmit = async (data: FormData) => {
-    setIsSubmitting(true);
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
     
-    try {
-      // In a real application, you would send this data to your backend
-      // For now, we'll simulate a successful submission with a delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      console.log("Form submitted:", data);
-      
-      // Show success message
-      toast({
-        title: t("Message Sent"),
-        description: t("We'll get back to you as soon as possible."),
-        duration: 5000,
-      });
-      
-      // Reset the form
-      form.reset();
-    } catch (error) {
-      console.error("Form submission error:", error);
-      toast({
-        title: t("Error"),
-        description: t("There was an error sending your message. Please try again."),
-        variant: "destructive",
-        duration: 5000,
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
+    // Simulate form submission
+    toast({
+      title: t("Message Sent"),
+      description: t("We'll get back to you as soon as possible."),
+      duration: 3000,
+    });
   };
   
   return (
@@ -95,75 +48,54 @@ const Contact = () => {
               <div className="p-8 bg-white dark:bg-gray-900/50 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800">
                 <h2 className="text-2xl font-bold mb-6">{t('Send us a message')}</h2>
                 
-                <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <FormField
-                        control={form.control}
-                        name="name"
-                        render={({ field }) => (
-                          <FormItem className="space-y-2">
-                            <FormLabel>{t('Name')}</FormLabel>
-                            <FormControl>
-                              <Input placeholder={t('Your name')} {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      
-                      <FormField
-                        control={form.control}
-                        name="email"
-                        render={({ field }) => (
-                          <FormItem className="space-y-2">
-                            <FormLabel>{t('Email')}</FormLabel>
-                            <FormControl>
-                              <Input type="email" placeholder={t('your.email@example.com')} {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label htmlFor="name" className="block font-medium">{t('Name')}</label>
+                      <Input
+                        id="name"
+                        placeholder={t('Your name')}
+                        className="w-full"
+                        required
                       />
                     </div>
                     
-                    <FormField
-                      control={form.control}
-                      name="subject"
-                      render={({ field }) => (
-                        <FormItem className="space-y-2">
-                          <FormLabel>{t('Subject')}</FormLabel>
-                          <FormControl>
-                            <Input placeholder={t('How can we help?')} {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
+                    <div className="space-y-2">
+                      <label htmlFor="email" className="block font-medium">{t('Email')}</label>
+                      <Input
+                        id="email"
+                        type="email"
+                        placeholder={t('your.email@example.com')}
+                        className="w-full"
+                        required
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <label htmlFor="subject" className="block font-medium">{t('Subject')}</label>
+                    <Input
+                      id="subject"
+                      placeholder={t('How can we help?')}
+                      className="w-full"
+                      required
                     />
-                    
-                    <FormField
-                      control={form.control}
-                      name="message"
-                      render={({ field }) => (
-                        <FormItem className="space-y-2">
-                          <FormLabel>{t('Message')}</FormLabel>
-                          <FormControl>
-                            <Textarea 
-                              placeholder={t('Tell us about your project or inquiry...')} 
-                              className="min-h-[150px]" 
-                              {...field} 
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <label htmlFor="message" className="block font-medium">{t('Message')}</label>
+                    <Textarea
+                      id="message"
+                      placeholder={t('Tell us about your project or inquiry...')}
+                      className="w-full min-h-[150px]"
+                      required
                     />
-                    
-                    <Button type="submit" className="cta-button" disabled={isSubmitting}>
-                      {isSubmitting ? t('Sending...') : t('Send Message')}
-                    </Button>
-                  </form>
-                </Form>
+                  </div>
+                  
+                  <Button type="submit" className="cta-button">
+                    {t('Send Message')}
+                  </Button>
+                </form>
               </div>
               
               <div>
@@ -188,8 +120,8 @@ const Contact = () => {
                       </div>
                       <div>
                         <h3 className="font-bold">{t('Phone')}</h3>
-                        <a href="tel:+40721354551" className="text-primary hover:underline">
-                          +40 721 354 551
+                        <a href="tel:+31612345678" className="text-primary hover:underline">
+                          +31 6 1234 5678
                         </a>
                       </div>
                     </div>

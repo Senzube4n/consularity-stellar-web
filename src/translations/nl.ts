@@ -137,17 +137,5 @@ export const nl = {
   'Saturday - Sunday:': 'Zaterdag - Zondag:',
   'Closed': 'Gesloten',
   'Message Sent': 'Bericht Verzonden',
-  'We\'ll get back to you as soon as possible.': 'We nemen zo snel mogelijk contact met u op.',
-  
-  // Cookie Consent
-  'This website uses cookies to enhance your experience. By continuing to use this site, you agree to our use of cookies.': 
-    'Deze website gebruikt cookies om uw ervaring te verbeteren. Door deze site te blijven gebruiken, gaat u akkoord met ons gebruik van cookies.',
-  'Learn more': 'Meer informatie',
-  'Decline': 'Weigeren',
-  'Accept': 'Accepteren',
-  
-  // Contact Form
-  'Sending...': 'Versturen...',
-  'Error': 'Fout',
-  'There was an error sending your message. Please try again.': 'Er is een fout opgetreden bij het verzenden van uw bericht. Probeer het opnieuw.',
+  'We\'ll get back to you as soon as possible.': 'We nemen zo snel mogelijk contact met u op.'
 };
