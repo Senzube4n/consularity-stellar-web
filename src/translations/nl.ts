@@ -1,4 +1,3 @@
-
 // Dutch translations
 
 export const nl = {
@@ -108,7 +107,7 @@ export const nl = {
     'Consularity werd opgericht met de visie om enterprise-grade technologie naar kleine en middelgrote bedrijven te brengen.',
   'AWS Partnership': 'AWS Partnerschap',
   'Became an official AWS Partner, expanding our cloud services capabilities to deliver more value to our clients.': 
-    'Werd een officiële AWS Partner, waardoor we onze cloud service mogelijkheden hebben uitgebreid om meer waarde te leveren aan onze klanten.',
+    'Werde een officiële AWS Partner, waardoor we onze cloud service mogelijkheden hebben uitgebreid om meer waarde te leveren aan onze klanten.',
   'AI Integration Launch': 'AI Integratie Lancering',
   'Launched our AI reporting and automation services, bringing cutting-edge machine learning to business operations.': 
     'Lanceerde onze AI-rapportage- en automatiseringsdiensten, waarmee we geavanceerde machine learning naar bedrijfsoperaties brengen.',
@@ -137,5 +136,37 @@ export const nl = {
   'Saturday - Sunday:': 'Zaterdag - Zondag:',
   'Closed': 'Gesloten',
   'Message Sent': 'Bericht Verzonden',
-  'We\'ll get back to you as soon as possible.': 'We nemen zo snel mogelijk contact met u op.'
+  'We\'ll get back to you as soon as possible.': 'We nemen zo snel mogelijk contact met u op.',
+  
+  // Cookie consent
+  'Privacy Preferences': 'Privacyvoorkeuren',
+  'We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.': 'Wij gebruiken cookies om uw browse-ervaring te verbeteren, gepersonaliseerde advertenties of content te tonen en ons verkeer te analyseren. Door op "Alles accepteren" te klikken, stemt u in met ons gebruik van cookies.',
+  'Necessary Cookies': 'Noodzakelijke Cookies',
+  'Required for the website to function properly': 'Vereist voor het correct functioneren van de website',
+  'Analytics Cookies': 'Analytische Cookies',
+  'Help us understand how visitors interact with our website': 'Helpen ons te begrijpen hoe bezoekers met onze website omgaan',
+  'Marketing Cookies': 'Marketing Cookies',
+  'Used to deliver advertisements more relevant to you': 'Gebruikt om advertenties relevanter voor u te maken',
+  'Necessary Only': 'Alleen Noodzakelijke',
+  'Save Preferences': 'Voorkeuren Opslaan',
+  'Accept All': 'Alles Accepteren',
+  'Cookie Settings': 'Cookie Instellingen',
+  
+  // Privacy Policy and Terms
+  'Privacy Policy': 'Privacybeleid',
+  'Terms of Service': 'Servicevoorwaarden',
+  'Introduction': 'Introductie',
+  'The Data We Collect': 'De Gegevens Die We Verzamelen',
+  'How We Use Your Data': 'Hoe We Uw Gegevens Gebruiken',
+  'Google Analytics': 'Google Analytics',
+  'Your Legal Rights': 'Uw Wettelijke Rechten',
+  'Contact Us': 'Neem Contact Op',
+  'Agreement to Terms': 'Instemming met Voorwaarden',
+  'Use License': 'Gebruikslicentie',
+  'Disclaimer': 'Disclaimer',
+  'Limitations': 'Beperkingen',
+  'Accuracy of Materials': 'Nauwkeurigheid van Materialen',
+  'Links': 'Links',
+  'Modifications': 'Wijzigingen',
+  'Governing Law': 'Toepasselijk Recht',
 };

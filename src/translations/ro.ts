@@ -1,4 +1,3 @@
-
 // Romanian translations
 
 export const ro = {
@@ -137,5 +136,37 @@ export const ro = {
   'Saturday - Sunday:': 'Sâmbătă - Duminică:',
   'Closed': 'Închis',
   'Message Sent': 'Mesaj Trimis',
-  'We\'ll get back to you as soon as possible.': 'Vă vom contacta cât mai curând posibil.'
+  'We\'ll get back to you as soon as possible.': 'Vă vom contacta cât mai curând posibil.',
+  
+  // Cookie consent
+  'Privacy Preferences': 'Preferințe de Confidențialitate',
+  'We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.': 'Folosim cookie-uri pentru a îmbunătăți experiența de navigare, pentru a afișa reclame sau conținut personalizat și pentru a analiza traficul nostru. Făcând clic pe "Accept Tot", sunteți de acord cu utilizarea cookie-urilor noastre.',
+  'Necessary Cookies': 'Cookie-uri Necesare',
+  'Required for the website to function properly': 'Necesare pentru funcționarea corectă a site-ului',
+  'Analytics Cookies': 'Cookie-uri Analitice',
+  'Help us understand how visitors interact with our website': 'Ne ajută să înțelegem cum interacționează vizitatorii cu site-ul nostru',
+  'Marketing Cookies': 'Cookie-uri de Marketing',
+  'Used to deliver advertisements more relevant to you': 'Utilizate pentru a livra reclame mai relevante pentru dumneavoastră',
+  'Necessary Only': 'Doar Necesare',
+  'Save Preferences': 'Salvează Preferințele',
+  'Accept All': 'Acceptă Tot',
+  'Cookie Settings': 'Setări Cookie',
+  
+  // Privacy Policy and Terms
+  'Privacy Policy': 'Politica de Confidențialitate',
+  'Terms of Service': 'Termeni și Condiții',
+  'Introduction': 'Introducere',
+  'The Data We Collect': 'Datele Pe Care Le Colectăm',
+  'How We Use Your Data': 'Cum Folosim Datele Dumneavoastră',
+  'Google Analytics': 'Google Analytics',
+  'Your Legal Rights': 'Drepturile Dumneavoastră Legale',
+  'Contact Us': 'Contactați-ne',
+  'Agreement to Terms': 'Acordul cu Termenii',
+  'Use License': 'Licență de Utilizare',
+  'Disclaimer': 'Declinarea Responsabilității',
+  'Limitations': 'Limitări',
+  'Accuracy of Materials': 'Acuratețea Materialelor',
+  'Links': 'Linkuri',
+  'Modifications': 'Modificări',
+  'Governing Law': 'Legea Aplicabilă',
 };

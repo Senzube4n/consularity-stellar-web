@@ -1,4 +1,3 @@
-
 // English translations
 
 export const en = {
@@ -137,5 +136,37 @@ export const en = {
   'Saturday - Sunday:': 'Saturday - Sunday:',
   'Closed': 'Closed',
   'Message Sent': 'Message Sent',
-  'We\'ll get back to you as soon as possible.': 'We\'ll get back to you as soon as possible.'
+  'We\'ll get back to you as soon as possible.': 'We\'ll get back to you as soon as possible.',
+  
+  // Cookie consent
+  'Privacy Preferences': 'Privacy Preferences',
+  'We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.': 'We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.',
+  'Necessary Cookies': 'Necessary Cookies',
+  'Required for the website to function properly': 'Required for the website to function properly',
+  'Analytics Cookies': 'Analytics Cookies',
+  'Help us understand how visitors interact with our website': 'Help us understand how visitors interact with our website',
+  'Marketing Cookies': 'Marketing Cookies',
+  'Used to deliver advertisements more relevant to you': 'Used to deliver advertisements more relevant to you',
+  'Necessary Only': 'Necessary Only',
+  'Save Preferences': 'Save Preferences',
+  'Accept All': 'Accept All',
+  'Cookie Settings': 'Cookie Settings',
+  
+  // Privacy Policy and Terms
+  'Privacy Policy': 'Privacy Policy',
+  'Terms of Service': 'Terms of Service',
+  'Introduction': 'Introduction',
+  'The Data We Collect': 'The Data We Collect',
+  'How We Use Your Data': 'How We Use Your Data',
+  'Google Analytics': 'Google Analytics',
+  'Your Legal Rights': 'Your Legal Rights',
+  'Contact Us': 'Contact Us',
+  'Agreement to Terms': 'Agreement to Terms',
+  'Use License': 'Use License',
+  'Disclaimer': 'Disclaimer',
+  'Limitations': 'Limitations',
+  'Accuracy of Materials': 'Accuracy of Materials',
+  'Links': 'Links',
+  'Modifications': 'Modifications',
+  'Governing Law': 'Governing Law',
 };
