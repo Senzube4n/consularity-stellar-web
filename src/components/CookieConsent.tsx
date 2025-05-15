@@ -17,6 +17,9 @@ const CookieConsent = () => {
         setShowConsent(true);
       }, 1000);
       return () => clearTimeout(timer);
+    } else if (consentGiven === 'accepted') {
+      // If consent was previously given, initialize GA
+      initializeGA();
     }
   }, []);
 
@@ -73,11 +76,14 @@ function initializeGA() {
 
   // Initialize GA
   window.dataLayer = window.dataLayer || [];
-  function gtag() {
-    dataLayer.push(arguments);
-  }
-  gtag('js', new Date());
-  gtag('config', 'G-MEASUREMENT_ID');
+  // Define gtag function properly
+  window.gtag = function() {
+    window.dataLayer.push(arguments);
+  };
+  
+  // Call gtag function correctly
+  window.gtag('js', new Date());
+  window.gtag('config', 'G-MEASUREMENT_ID');
 }
 
 // Add types for gtag to avoid TypeScript errors
