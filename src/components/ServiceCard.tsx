@@ -38,7 +38,7 @@ const ServiceCard = ({ title, description, icon, link, titleKey, descriptionKey 
   if (link) {
     return (
       <Link to={link} className="block">
-        <Card className="service-card hover:animate-pulse-glow overflow-hidden h-full transition-all duration-300 hover:shadow-lg">
+        <Card className="service-card hover:animate-pulse-glow overflow-hidden h-full transition-all duration-300 hover:shadow-lg group">
           <div className="absolute top-0 left-0 w-1 h-1/3 bg-primary transform translate-y-4 opacity-0 group-hover:opacity-100 transition-all duration-300" />
           {cardContent}
         </Card>
@@ -47,7 +47,7 @@ const ServiceCard = ({ title, description, icon, link, titleKey, descriptionKey 
   }
   
   return (
-    <Card className="service-card hover:animate-pulse-glow overflow-hidden h-full">
+    <Card className="service-card hover:animate-pulse-glow overflow-hidden h-full group">
       <div className="absolute top-0 left-0 w-1 h-1/3 bg-primary transform translate-y-4 opacity-0 group-hover:opacity-100 transition-all duration-300" />
       {cardContent}
     </Card>

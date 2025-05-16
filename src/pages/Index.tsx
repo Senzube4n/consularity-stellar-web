@@ -1,3 +1,4 @@
+
 import React, { useRef, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -148,45 +149,47 @@ const Index = () => {
             <div className="w-20 h-1 bg-primary mx-auto" />
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
             <ServiceCard 
-              title="SAP Business One Implementations" 
-              description="Complete ERP solutions tailored to your business processes with expert guidance and support."
+              titleKey="service_sap_title" 
+              descriptionKey="service_sap_desc"
               icon={<Database className="w-6 h-6" />}
               link="/services/sap-business-one"
             />
             
             <ServiceCard 
-              title="AWS Cloud Hosting & DevOps" 
-              description="Secure, scalable and high-performance infrastructure with continuous delivery pipelines."
+              titleKey="service_aws_title" 
+              descriptionKey="service_aws_desc"
               icon={<Cloud className="w-6 h-6" />}
               link="/services/aws-cloud"
             />
             
             <ServiceCard 
-              title="AI Reporting & Automation" 
-              description="Smart reporting tools and AI-enhanced automation to transform data into actionable insights."
+              titleKey="service_ai_title" 
+              descriptionKey="service_ai_desc"
               icon={<Server className="w-6 h-6" />}
               link="/services/ai-reporting"
             />
             
             <ServiceCard 
-              title="Power BI Solutions" 
-              description="Advanced data visualization and business intelligence dashboards for better decision making."
+              titleKey="service_powerbi_title" 
+              descriptionKey="service_powerbi_desc"
               icon={<BarChart className="w-6 h-6" />}
               link="/services/power-bi"
             />
-            
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-xl mx-auto">
             <ServiceCard 
-              title="Website Development" 
-              description="Custom, responsive websites and web applications built with modern technologies."
+              titleKey="service_web_title" 
+              descriptionKey="service_web_desc"
               icon={<Globe className="w-6 h-6" />}
               link="/services/website-development"
             />
             
             <ServiceCard 
-              title="IT Support & Integrations" 
-              description="Seamless integration of all systems with reliable ongoing technical support."
+              titleKey="service_it_title" 
+              descriptionKey="service_it_desc"
               icon={<Settings className="w-6 h-6" />}
               link="/services/it-support"
             />
