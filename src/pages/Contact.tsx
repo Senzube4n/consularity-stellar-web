@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -8,11 +8,13 @@ import { useToast } from "@/hooks/use-toast";
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useLanguage } from '@/hooks/useLanguage';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const { toast } = useToast();
   const { t } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -30,11 +32,24 @@ const Contact = () => {
     setIsSubmitting(true);
     
     try {
-      // Simulate API call with a delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Log the form data (in a real app, you would send this to a server)
+      // Log the form submission for debugging
       console.log('Form submitted:', formData);
+      
+      // Send email using EmailJS
+      const result = await emailjs.send(
+        'service_consularity',  // Replace with your EmailJS service ID
+        'template_contact',     // Replace with your EmailJS template ID
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          reply_to: formData.email,
+        },
+        'YOUR_PUBLIC_KEY'  // Replace with your EmailJS public key
+      );
+      
+      console.log('Email sent successfully:', result);
       
       // Show success message
       toast({
@@ -50,6 +65,10 @@ const Contact = () => {
         subject: '',
         message: ''
       });
+      
+      if (formRef.current) {
+        formRef.current.reset();
+      }
     } catch (error) {
       console.error('Error submitting form:', error);
       toast({
@@ -87,12 +106,13 @@ const Contact = () => {
               <div className="p-8 bg-white dark:bg-gray-900/50 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800">
                 <h2 className="text-2xl font-bold mb-6">{t('Send us a message')}</h2>
                 
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <label htmlFor="name" className="block font-medium">{t('Name')}</label>
                       <Input
                         id="name"
+                        name="name"
                         value={formData.name}
                         onChange={handleChange}
                         placeholder={t('Your name')}
@@ -106,6 +126,7 @@ const Contact = () => {
                       <label htmlFor="email" className="block font-medium">{t('Email')}</label>
                       <Input
                         id="email"
+                        name="email"
                         type="email"
                         value={formData.email}
                         onChange={handleChange}
@@ -121,6 +142,7 @@ const Contact = () => {
                     <label htmlFor="subject" className="block font-medium">{t('Subject')}</label>
                     <Input
                       id="subject"
+                      name="subject"
                       value={formData.subject}
                       onChange={handleChange}
                       placeholder={t('How can we help?')}
@@ -134,6 +156,7 @@ const Contact = () => {
                     <label htmlFor="message" className="block font-medium">{t('Message')}</label>
                     <Textarea
                       id="message"
+                      name="message"
                       value={formData.message}
                       onChange={handleChange}
                       placeholder={t('Tell us about your project or inquiry...')}
