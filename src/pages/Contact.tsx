@@ -1,9 +1,9 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone } from "lucide-react";
+import { Mail, Phone, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -12,16 +12,55 @@ import { useLanguage } from '@/hooks/useLanguage';
 const Contact = () => {
   const { toast } = useToast();
   const { t } = useLanguage();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({ ...prev, [id]: value }));
+  };
+  
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
     
-    // Simulate form submission
-    toast({
-      title: t("Message Sent"),
-      description: t("We'll get back to you as soon as possible."),
-      duration: 3000,
-    });
+    try {
+      // Simulate API call with a delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Log the form data (in a real app, you would send this to a server)
+      console.log('Form submitted:', formData);
+      
+      // Show success message
+      toast({
+        title: t("Message Sent"),
+        description: t("We'll get back to you as soon as possible."),
+        duration: 3000,
+      });
+      
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast({
+        title: t("Error"),
+        description: t("There was a problem sending your message. Please try again."),
+        variant: "destructive",
+        duration: 3000,
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   
   return (
@@ -54,9 +93,12 @@ const Contact = () => {
                       <label htmlFor="name" className="block font-medium">{t('Name')}</label>
                       <Input
                         id="name"
+                        value={formData.name}
+                        onChange={handleChange}
                         placeholder={t('Your name')}
                         className="w-full"
                         required
+                        disabled={isSubmitting}
                       />
                     </div>
                     
@@ -65,9 +107,12 @@ const Contact = () => {
                       <Input
                         id="email"
                         type="email"
+                        value={formData.email}
+                        onChange={handleChange}
                         placeholder={t('your.email@example.com')}
                         className="w-full"
                         required
+                        disabled={isSubmitting}
                       />
                     </div>
                   </div>
@@ -76,9 +121,12 @@ const Contact = () => {
                     <label htmlFor="subject" className="block font-medium">{t('Subject')}</label>
                     <Input
                       id="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
                       placeholder={t('How can we help?')}
                       className="w-full"
                       required
+                      disabled={isSubmitting}
                     />
                   </div>
                   
@@ -86,14 +134,24 @@ const Contact = () => {
                     <label htmlFor="message" className="block font-medium">{t('Message')}</label>
                     <Textarea
                       id="message"
+                      value={formData.message}
+                      onChange={handleChange}
                       placeholder={t('Tell us about your project or inquiry...')}
                       className="w-full min-h-[150px]"
                       required
+                      disabled={isSubmitting}
                     />
                   </div>
                   
-                  <Button type="submit" className="cta-button">
-                    {t('Send Message')}
+                  <Button type="submit" className="cta-button" disabled={isSubmitting}>
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        {t('Sending...')}
+                      </>
+                    ) : (
+                      t('Send Message')
+                    )}
                   </Button>
                 </form>
               </div>
@@ -120,8 +178,8 @@ const Contact = () => {
                       </div>
                       <div>
                         <h3 className="font-bold">{t('Phone')}</h3>
-                        <a href="tel:+31612345678" className="text-primary hover:underline">
-                          +31 6 1234 5678
+                        <a href="tel:+40721354551" className="text-primary hover:underline">
+                          +40 721 354 551
                         </a>
                       </div>
                     </div>

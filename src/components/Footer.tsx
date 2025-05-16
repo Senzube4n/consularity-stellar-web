@@ -47,7 +47,7 @@ const Footer = () => {
               <a href="mailto:info@consularity.com" className="text-gray-500 hover:text-primary" aria-label="Email us">
                 <Mail size={20} />
               </a>
-              <a href="tel:+31612345678" className="text-gray-500 hover:text-primary" aria-label="Call us">
+              <a href="tel:+40721354551" className="text-gray-500 hover:text-primary" aria-label="Call us">
                 <Phone size={20} />
               </a>
             </div>
