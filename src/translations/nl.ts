@@ -34,7 +34,7 @@ export const nl = {
   
   // Project Timeline Section
   'Project Timeline': 'Project Tijdlijn',
-  'Our proven implementation methodology ensures a smooth, predictable journey from concept to completion': 'Metodologia noastră  dovedită de implementare  asigură o tranziție lină și previzibilă de la concept la finalizare.',
+  'Our proven implementation methodology ensures a smooth, predictable journey from concept to completion': 'Onze beproefde implementatiemethodologie zorgt voor een soepel en voorspelbaar traject van concept tot oplevering.',
   'Discovery & Planning': 'Ontdekking & Planning',
   'System Design': 'Systeemontwerp',
   'Development': 'Ontwikkeling',
