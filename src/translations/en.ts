@@ -63,8 +63,8 @@ export const en = {
   // Testimonials Section
   'Client Testimonials': 'Client Testimonials',
   'Don\'t just take our word for it. Hear what our clients have to say about working with Consularity.': 'Don\'t just take our word for it. Hear what our clients have to say about working with Consularity.',
-  'Consularity transformed our entire business operations. Their SAP implementation was smooth and their ongoing support has been exceptional.': 
-    'Consularity transformed our entire business operations. Their SAP implementation was smooth and their ongoing support has been exceptional.',
+  'Consularity transformed our entire business operations. Their implementation was smooth and their ongoing support has been exceptional.': 
+    'Consularity transformed our entire business operations. Their implementation was smooth and their ongoing support has been exceptional.',
   'The AI-powered reporting tools have given us insights we never thought possible. We can now make data-driven decisions with confidence.': 
     'The AI-powered reporting tools have given us insights we never thought possible. We can now make data-driven decisions with confidence.',
   'Our AWS cloud migration with Consularity was flawless. We\'ve seen marked improvements in system performance and significant cost savings.': 

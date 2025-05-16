@@ -40,32 +40,32 @@ const Testimonials = () => {
   // Testimonial data - would typically come from a CMS or API
   const testimonials = [
     {
-      quote: t("Consularity transformed our entire business operations. Their SAP implementation was smooth and their ongoing support has been exceptional."),
-      name: "Sarah Johnson",
-      title: t("CFO"),
-      company: "TechGrowth Solutions",
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+      quote: t("Consularity transformed our entire business operations. Their implementation was smooth and their ongoing support has been exceptional."),
+      name: "Werner van Borm",
+      title: t("Managing Director"),
+      company: "DIPS International",
+      image: "https://media.licdn.com/dms/image/v2/D4D35AQFh6fRV_o953A/profile-framedphoto-shrink_200_200/profile-framedphoto-shrink_200_200/0/1686862911969?e=1747994400&v=beta&t=HOg_TKyIxUYUVlcIrz6oycWmhbWLbWchKQt6__eflGE"
     },
     {
       quote: t("The AI-powered reporting tools have given us insights we never thought possible. We can now make data-driven decisions with confidence."),
-      name: "Michael Chen",
-      title: t("CTO"),
-      company: "InnovateTech Inc",
-      image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+      name: "Ewoud Berx",
+      title: t("CEO"),
+      company: "Berx Services",
+      image: "https://media.licdn.com/dms/image/v2/D4E03AQF1SCJrZrkFxg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1721067896130?e=1752710400&v=beta&t=wm-LLC2Q9oFSA7Oa26QWn2q7LXJvT8iPRWNj-3ccuoQ"
     },
     {
       quote: t("Our AWS cloud migration with Consularity was flawless. We've seen marked improvements in system performance and significant cost savings."),
-      name: "Jessica Patel",
-      title: t("Operations Director"),
-      company: "Global Logistics Group",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+      name: "Mihnea Radulescu",
+      title: t("CEO"),
+      company: "RAD Consulting SRL",
+      image: "https://media.licdn.com/dms/image/v2/D5603AQGEa_Cz5qUxjA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1721912378200?e=1752710400&v=beta&t=kFPsqum_-skLBDQvg8EWRDcwNG1OzsnfNbQPHQyyQhQ"
     },
     {
       quote: t("The team at Consularity doesn't just implement solutions; they become true partners in your business success. Highly recommended."),
-      name: "Robert Alvarez",
-      title: t("CEO"),
-      company: "Meridian Manufacturing",
-      image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+      name: "Simone Hanhart",
+      title: t("General Manager"),
+      company: "DIPS Belgium",
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
     }
   ];
 

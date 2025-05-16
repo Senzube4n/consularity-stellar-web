@@ -63,8 +63,8 @@ export const ro = {
   // Testimonials Section
   'Client Testimonials': 'Părerea Clienților Noștri',
   'Don\'t just take our word for it. Hear what our clients have to say about working with Consularity.': 'Lasă-i pe clienții noștri să-ți povestească despre experiența lor alături de Consularity.',
-  'Consularity transformed our entire business operations. Their SAP implementation was smooth and their ongoing support has been exceptional.': 
-    'Consularity ne-a transformat întreaga operațiune de afaceri. Implementarea SAP a fost fără probleme, iar suportul lor continuu a fost excepțional.',
+  'Consularity transformed our entire business operations. Their implementation was smooth and their ongoing support has been exceptional.': 
+    'Consularity ne-a transformat întreaga operațiune de afaceri. Implementarea a fost fără probleme, iar suportul lor continuu a fost excepțional.',
   'The AI-powered reporting tools have given us insights we never thought possible. We can now make data-driven decisions with confidence.': 
     'Instrumentele de raportare bazate pe AI ne-au oferit perspective pe care nu le-am crezut posibile. Acum putem lua decizii bazate pe date cu încredere.',
   'Our AWS cloud migration with Consularity was flawless. We\'ve seen marked improvements in system performance and significant cost savings.': 
