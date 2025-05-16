@@ -78,7 +78,7 @@ export const nl = {
   
   // Impact Sections
   'Our Impact': 'Onze Impact',
-  'At Consularity, we measure our success by the transformative outcomes we deliver for our clients. Each case study represents a journey through the technological singularity, resulting in measurable business improvements and competitive advantages.':'La Consularity, ne măsurăm succesul prin rezultatele transformatoare pe care le oferim clienților noștri. Fiecare studiu de caz reprezintă o călătorie prin singularitatea tehnologică, generând îmbunătățiri măsurabile ale afacerii și avantaje competitive.',
+  'At Consularity, we measure our success by the transformative outcomes we deliver for our clients. Each case study represents a journey through the technological singularity, resulting in measurable business improvements and competitive advantages.':'Bij Consularity meten wij ons succes aan de transformerende resultaten die wij voor onze klanten realiseren. Elke case study vertegenwoordigt een reis door de technologische singulariteit, wat leidt tot meetbare verbeteringen in het bedrijfsleven en een concurrentievoordeel.',
   'Impact Metrics': 'Impactmetingen',
   'Visualizing the measurable impact of our solutions across client implementations': 'Het visualiseren van de meetbare impact van onze oplossingen binnen klantimplementaties.',
   'Performance': 'Prestaties',
