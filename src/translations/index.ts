@@ -1,14 +1,24 @@
 
-// Translations index file
+// Import language translations
 import { en } from './en';
 import { nl } from './nl';
 import { ro } from './ro';
 
+// Import service-specific translations
+import { servicesEn } from './services/en';
+import { servicesNl } from './services/nl';
+import { servicesRo } from './services/ro';
+
+// Merge the main translations with service-specific translations
+const mergedEn = { ...en, ...servicesEn };
+const mergedNl = { ...nl, ...servicesNl };
+const mergedRo = { ...ro, ...servicesRo };
+
 // Export all translations
 export const translations = {
-  en,
-  nl,
-  ro
+  en: mergedEn,
+  nl: mergedNl,
+  ro: mergedRo
 };
 
 // Export language type

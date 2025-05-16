@@ -70,9 +70,10 @@ const Navbar = () => {
               </NavigationMenuItem>
               
               <NavigationMenuItem>
-                <NavigationMenuTrigger>
+                <Link to="#" className="nav-link px-3 py-2 inline-block">
                   {t('Services')}
-                </NavigationMenuTrigger>
+                  <ChevronDown className="inline-block ml-1 h-4 w-4" />
+                </Link>
                 <NavigationMenuContent>
                   <ul className="grid w-[400px] md:w-[500px] lg:w-[600px] grid-cols-2 gap-3 p-4">
                     <li>

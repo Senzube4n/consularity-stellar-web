@@ -68,6 +68,59 @@ const SapBusinessOne = () => {
         </div>
       </section>
       
+      {/* B1UP Addon Section */}
+      <section className="py-16 bg-primary/5">
+        <div className="consularity-container">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold mb-6 text-center">{t('Enhance SAP B1 with Boyum-IT B1UP')}</h2>
+            <p className="text-lg mb-6 text-center">
+              {t('Every SAP Business One implementation we deliver includes Boyum-IT\'s B1UP addon to maximize your ERP investment.')}
+            </p>
+            
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+              <h3 className="text-xl font-bold mb-4">{t('What is B1UP?')}</h3>
+              <p className="mb-4">
+                {t('B1UP is a powerful development framework that extends and enhances SAP Business One. It allows for customization and automation without the need for complex programming, making it easier to tailor SAP B1 to your specific business requirements.')}
+              </p>
+              
+              <h3 className="text-xl font-bold mb-4 mt-6">{t('Key B1UP Features')}</h3>
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <li className="flex items-start">
+                  <CheckCircle className="mr-2 h-6 w-6 text-primary flex-shrink-0" />
+                  <span>{t('Custom Screen Layouts')}: {t('Tailor SAP B1 user interfaces to match your business processes')}</span>
+                </li>
+                <li className="flex items-start">
+                  <CheckCircle className="mr-2 h-6 w-6 text-primary flex-shrink-0" />
+                  <span>{t('Process Automation')}: {t('Automate routine tasks and business processes')}</span>
+                </li>
+                <li className="flex items-start">
+                  <CheckCircle className="mr-2 h-6 w-6 text-primary flex-shrink-0" />
+                  <span>{t('Custom Validations')}: {t('Enforce business rules and data quality')}</span>
+                </li>
+                <li className="flex items-start">
+                  <CheckCircle className="mr-2 h-6 w-6 text-primary flex-shrink-0" />
+                  <span>{t('Advanced Reporting')}: {t('Create custom reports and dashboards')}</span>
+                </li>
+                <li className="flex items-start">
+                  <CheckCircle className="mr-2 h-6 w-6 text-primary flex-shrink-0" />
+                  <span>{t('Form Builder')}: {t('Design custom forms without programming')}</span>
+                </li>
+                <li className="flex items-start">
+                  <CheckCircle className="mr-2 h-6 w-6 text-primary flex-shrink-0" />
+                  <span>{t('Workflow Management')}: {t('Design and implement approval flows')}</span>
+                </li>
+              </ul>
+              
+              <div className="mt-6 p-4 bg-primary/10 rounded-lg">
+                <p className="text-center font-medium">
+                  {t('With B1UP, we can customize your SAP Business One solution faster, with higher quality, and at a lower cost than traditional custom development.')}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
       {/* Services Section */}
       <section className="py-16 bg-gray-50 dark:bg-gray-900/30">
         <div className="consularity-container">

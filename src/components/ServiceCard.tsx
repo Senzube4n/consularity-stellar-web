@@ -9,10 +9,16 @@ interface ServiceCardProps {
   description: string;
   icon: React.ReactNode;
   link?: string;
+  titleKey?: string;  // Translation key for title
+  descriptionKey?: string;  // Translation key for description
 }
 
-const ServiceCard = ({ title, description, icon, link }: ServiceCardProps) => {
+const ServiceCard = ({ title, description, icon, link, titleKey, descriptionKey }: ServiceCardProps) => {
   const { t } = useLanguage();
+  
+  // Use translation keys if provided, otherwise use the direct strings
+  const displayTitle = titleKey ? t(titleKey) : title;
+  const displayDescription = descriptionKey ? t(descriptionKey) : description;
   
   const cardContent = (
     <>
@@ -20,11 +26,11 @@ const ServiceCard = ({ title, description, icon, link }: ServiceCardProps) => {
         <div className="rounded-full w-12 h-12 flex items-center justify-center bg-primary/10 text-primary mb-4">
           {icon}
         </div>
-        <CardTitle className="font-heading">{t(title)}</CardTitle>
+        <CardTitle className="font-heading">{displayTitle}</CardTitle>
       </CardHeader>
       
       <CardContent>
-        <CardDescription className="text-base">{t(description)}</CardDescription>
+        <CardDescription className="text-base">{displayDescription}</CardDescription>
       </CardContent>
     </>
   );
