@@ -12,6 +12,15 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
+
+// Service pages
+import SapBusinessOne from "./pages/services/SapBusinessOne";
+import AwsCloud from "./pages/services/AwsCloud";
+import AiReporting from "./pages/services/AiReporting";
+import PowerBI from "./pages/services/PowerBI";
+import WebsiteDevelopment from "./pages/services/WebsiteDevelopment";
+import ItSupport from "./pages/services/ItSupport";
+
 import CookieConsent from "./components/CookieConsent";
 
 const queryClient = new QueryClient();
@@ -30,6 +39,15 @@ const App = () => (
               <Route path="/contact" element={<Contact />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
+              
+              {/* Service routes */}
+              <Route path="/services/sap-business-one" element={<SapBusinessOne />} />
+              <Route path="/services/aws-cloud" element={<AwsCloud />} />
+              <Route path="/services/ai-reporting" element={<AiReporting />} />
+              <Route path="/services/power-bi" element={<PowerBI />} />
+              <Route path="/services/website-development" element={<WebsiteDevelopment />} />
+              <Route path="/services/it-support" element={<ItSupport />} />
+              
               <Route path="*" element={<NotFound />} />
             </Routes>
             <CookieConsent />

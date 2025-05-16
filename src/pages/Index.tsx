@@ -1,8 +1,7 @@
-
 import React, { useRef, useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Added useNavigate for programmatic navigation
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Server, Cloud, Database, Settings } from "lucide-react";
+import { ArrowRight, Server, Cloud, Database, Settings, BarChart, Globe } from "lucide-react";
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ParticlesBackground from '@/components/ParticlesBackground';
@@ -149,29 +148,47 @@ const Index = () => {
             <div className="w-20 h-1 bg-primary mx-auto" />
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
             <ServiceCard 
               title="SAP Business One Implementations" 
               description="Complete ERP solutions tailored to your business processes with expert guidance and support."
               icon={<Database className="w-6 h-6" />}
+              link="/services/sap-business-one"
             />
             
             <ServiceCard 
               title="AWS Cloud Hosting & DevOps" 
               description="Secure, scalable and high-performance infrastructure with continuous delivery pipelines."
               icon={<Cloud className="w-6 h-6" />}
+              link="/services/aws-cloud"
             />
             
             <ServiceCard 
               title="AI Reporting & Automation" 
               description="Smart reporting tools and AI-enhanced automation to transform data into actionable insights."
               icon={<Server className="w-6 h-6" />}
+              link="/services/ai-reporting"
+            />
+            
+            <ServiceCard 
+              title="Power BI Solutions" 
+              description="Advanced data visualization and business intelligence dashboards for better decision making."
+              icon={<BarChart className="w-6 h-6" />}
+              link="/services/power-bi"
+            />
+            
+            <ServiceCard 
+              title="Website Development" 
+              description="Custom, responsive websites and web applications built with modern technologies."
+              icon={<Globe className="w-6 h-6" />}
+              link="/services/website-development"
             />
             
             <ServiceCard 
               title="IT Support & Integrations" 
               description="Seamless integration of all systems with reliable ongoing technical support."
               icon={<Settings className="w-6 h-6" />}
+              link="/services/it-support"
             />
           </div>
         </div>

@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useLanguage } from '@/hooks/useLanguage';
 
@@ -7,15 +8,14 @@ interface ServiceCardProps {
   title: string;
   description: string;
   icon: React.ReactNode;
+  link?: string;
 }
 
-const ServiceCard = ({ title, description, icon }: ServiceCardProps) => {
+const ServiceCard = ({ title, description, icon, link }: ServiceCardProps) => {
   const { t } = useLanguage();
   
-  return (
-    <Card className="service-card hover:animate-pulse-glow overflow-hidden">
-      <div className="absolute top-0 left-0 w-1 h-1/3 bg-primary transform translate-y-4 opacity-0 group-hover:opacity-100 transition-all duration-300" />
-      
+  const cardContent = (
+    <>
       <CardHeader>
         <div className="rounded-full w-12 h-12 flex items-center justify-center bg-primary/10 text-primary mb-4">
           {icon}
@@ -26,6 +26,24 @@ const ServiceCard = ({ title, description, icon }: ServiceCardProps) => {
       <CardContent>
         <CardDescription className="text-base">{t(description)}</CardDescription>
       </CardContent>
+    </>
+  );
+  
+  if (link) {
+    return (
+      <Link to={link} className="block">
+        <Card className="service-card hover:animate-pulse-glow overflow-hidden h-full transition-all duration-300 hover:shadow-lg">
+          <div className="absolute top-0 left-0 w-1 h-1/3 bg-primary transform translate-y-4 opacity-0 group-hover:opacity-100 transition-all duration-300" />
+          {cardContent}
+        </Card>
+      </Link>
+    );
+  }
+  
+  return (
+    <Card className="service-card hover:animate-pulse-glow overflow-hidden h-full">
+      <div className="absolute top-0 left-0 w-1 h-1/3 bg-primary transform translate-y-4 opacity-0 group-hover:opacity-100 transition-all duration-300" />
+      {cardContent}
     </Card>
   );
 };
