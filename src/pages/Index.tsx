@@ -252,7 +252,7 @@ const Index = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('Client Testimonials')}</h2>
             <div className="w-20 h-1 bg-primary mx-auto" />
             <p className="text-lg text-muted-foreground mt-6 max-w-3xl mx-auto">
-              {t('Don't just take our word for it. Hear what our clients have to say about working with Consularity.')}
+              {t('Don\'t just take our word for it. Hear what our clients have to say about working with Consularity.')}
             </p>
           </div>
           
@@ -317,7 +317,7 @@ const Index = () => {
             </h2>
             
             <p className="text-xl text-muted-foreground mb-10">
-              {t('Ready to leverage cutting-edge technology to transform your business operations? Let's discuss how Consularity can help you achieve your goals.')}
+              {t('Ready to leverage cutting-edge technology to transform your business operations? Let\'s discuss how Consularity can help you achieve your goals.')}
             </p>
             
             <Button 

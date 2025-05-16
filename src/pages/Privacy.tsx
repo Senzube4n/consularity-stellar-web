@@ -89,7 +89,6 @@ const Privacy = () => {
             </p>
             <p>
               Email: privacy@consularity.com<br />
-              Phone: +31 612345678
             </p>
           </section>
         </div>

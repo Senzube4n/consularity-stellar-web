@@ -86,7 +86,6 @@ const Terms = () => {
             </p>
             <p>
               Email: legal@consularity.com<br />
-              Phone: +31 612345678
             </p>
           </section>
         </div>
