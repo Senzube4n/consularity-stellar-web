@@ -110,8 +110,7 @@ const Index = () => {
             </h1>
             
             <p className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
-              Premium consultancy for SAP Business One, AWS Cloud and AI-powered solutions 
-              tailored to small and midsize enterprises.
+              {t('Premium consultancy for SAP Business One, AWS Cloud and AI-powered solutions tailored to small and midsize enterprises.')}
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
