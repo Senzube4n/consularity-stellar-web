@@ -74,16 +74,17 @@ const About = () => {
         </section>
         
         {/* Timeline Section */}
+        {/*  
         <section className="py-16 bg-gray-50/50 dark:bg-gray-900/30">
           <div className="consularity-container">
             <h2 className="text-3xl font-bold mb-12 text-center">{t('Our Journey')}</h2>
             
             <div className="relative">
-              {/* Timeline Track */}
+              {/ Timeline Track /}
               <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-px bg-gray-200 dark:bg-gray-700" />
               
               <div className="space-y-16 relative z-10">
-                {/* Timeline Item 1 */}
+                {/ Timeline Item 1 /}
                 <div className="relative">
                   <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-primary border-4 border-white dark:border-gray-900" />
                   <div className="md:w-5/12 md:pr-8 md:text-right ml-auto">
@@ -93,7 +94,7 @@ const About = () => {
                   </div>
                 </div>
                 
-                {/* Timeline Item 2 */}
+                {/ Timeline Item 2 /}
                 <div className="relative">
                   <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-primary border-4 border-white dark:border-gray-900" />
                   <div className="md:w-5/12 md:pl-8 md:text-left">
@@ -103,7 +104,7 @@ const About = () => {
                   </div>
                 </div>
                 
-                {/* Timeline Item 3 */}
+                {/ Timeline Item 3 /}
                 <div className="relative">
                   <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-primary border-4 border-white dark:border-gray-900" />
                   <div className="md:w-5/12 md:pr-8 md:text-right ml-auto">
@@ -113,7 +114,7 @@ const About = () => {
                   </div>
                 </div>
                 
-                {/* Timeline Item 4 */}
+                {/ Timeline Item 4 /}
                 <div className="relative">
                   <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-primary border-4 border-white dark:border-gray-900" />
                   <div className="md:w-5/12 md:pl-8 md:text-left">
@@ -126,6 +127,7 @@ const About = () => {
             </div>
           </div>
         </section>
+        */}
       </main>
       
       <Footer />
