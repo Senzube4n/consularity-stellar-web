@@ -8,6 +8,7 @@ export const nl = {
   'Contact': 'Contact',
   'Let\'s Talk': 'Neem contact op',
   'Where AI, Cloud, and Business Systems Converge': 'Waar AI, Cloud en bedrijfssystemen samenkomen',
+  'Premium consultancy for SAP Business One, AWS Cloud and AI-powered solutions tailored to small and midsize enterprises.': 'Premium consultancy voor SAP Business One, AWS Cloud en AI-gestuurde oplossingen, speciaal voor het MKB.',
   'Discover Our Approach': 'Ontdek onze aanpak',
   
   // Services Section
@@ -16,7 +17,11 @@ export const nl = {
   'AWS Cloud Hosting & DevOps': 'AWS Cloud Hosting & DevOps',
   'AI Reporting & Automation': 'AI Rapportage & Automatisering',
   'IT Support & Integrations': 'IT Ondersteuning & Integraties',
-  
+  'Complete ERP solutions tailored to your business processes with expert guidance and support.': 'Complete ERP solutions tailored to your business processes with expert guidance and support.',
+  'Secure, scalable and high-performance infrastructure with continuous delivery pipelines.': 'Een veilige, schaalbare en hoogpresterende infrastructuur met geautomatiseerde continu-leveringspijplijnen.',
+  'Smart reporting tools and AI-enhanced automation to transform data into actionable insights.': 'Geavanceerde rapportagetools en AI-versterkte automatisering die data transformeren tot bruikbare inzichten.',
+  'Seamless integration of all systems with reliable ongoing technical support.': 'Vlotte integratie van alle systemen, ondersteund door betrouwbare en voortdurende technische support.',
+
   // Why Consularity Section
   'Why Consularity': 'Waarom Consularity',
   'Expert-led Implementations': 'Implementaties door experts',
@@ -24,6 +29,8 @@ export const nl = {
   'AI-Enhanced Operations': 'AI-verbeterde operaties',
   'Our team brings deep expertise in business systems, ensuring smooth deployment and maximum value.':
      'Ons team beschikt over diepgaande expertise op het gebied van bedrijfssystemen en garandeert een soepele implementatie en maximale waarde',
+  'Future-proof solutions that grow with your business needs while maintaining performance.': 'Duurzame oplossingen die zich aanpassen aan de groei van jouw organisatie en tegelijkertijd optimale prestaties garanderen.',
+  'Leverage the power of AI to optimize your operations and gain competitive advantage.': 'Maak gebruik van de kracht van AI om je bedrijfsvoering te optimaliseren en je concurrentiepositie te versterken.',
   
   // Project Timeline Section
   'Project Timeline': 'Project Tijdlijn',
@@ -54,6 +61,7 @@ export const nl = {
   
   // Testimonials Section
   'Client Testimonials': 'Klantreferenties',
+  'Don\'t just take our word for it. Hear what our clients have to say about working with Consularity.': 'Neem niet alleen ons woord ervoor aan – ontdek wat onze klanten zeggen over hun samenwerking met Consularity.',
   'Consularity transformed our entire business operations. Their SAP implementation was smooth and their ongoing support has been exceptional.': 
     'Consularity heeft onze volledige bedrijfsvoering getransformeerd. Hun SAP-implementatie verliep soepel en hun doorlopende ondersteuning is uitzonderlijk.',
   'The AI-powered reporting tools have given us insights we never thought possible. We can now make data-driven decisions with confidence.': 
@@ -69,10 +77,18 @@ export const nl = {
   
   // Impact Sections
   'Our Impact': 'Onze Impact',
-  'Impact Metrics': 'Impactmetriek',
-  
+  'At Consularity, we measure our success by the transformative outcomes we deliver for our clients. Each case study represents a journey through the technological singularity, resulting in measurable business improvements and competitive advantages.':'La Consularity, ne măsurăm succesul prin rezultatele transformatoare pe care le oferim clienților noștri. Fiecare studiu de caz reprezintă o călătorie prin singularitatea tehnologică, generând îmbunătățiri măsurabile ale afacerii și avantaje competitive.',
+  'Impact Metrics': 'Impactmetingen',
+  'Visualizing the measurable impact of our solutions across client implementations': 'Het visualiseren van de meetbare impact van onze oplossingen binnen klantimplementaties.',
+  'Performance': 'Prestaties',
+  'Cost Reduction': 'Kostenreductie',
+  'Implementation Timeline': 'Implementatieduur',
+  'Baseline': 'Basislijn',
+  'With Consularity': 'Met Consularity',
+
   // CTA Section
   'Let\'s start your transformation': 'Laten we uw transformatie starten',
+  'Ready to leverage cutting-edge technology to transform your business operations? Let\'s discuss how Consularity can help you achieve your goals.': 'Bent u klaar om gebruik te maken van de nieuwste technologieën om uw bedrijfsprocessen te transformeren? Laten wij bespreken hoe Consularity u kan ondersteunen bij het behalen van uw doelstellingen.',
   'Start a Conversation': 'Begin een gesprek',
   
   // Footer

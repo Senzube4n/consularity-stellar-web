@@ -8,6 +8,7 @@ export const en = {
   'Contact': 'Contact',
   'Let\'s Talk': 'Let\'s Talk',
   'Where AI, Cloud, and Business Systems Converge': 'Where AI, Cloud, and Business Systems Converge',
+  'Premium consultancy for SAP Business One, AWS Cloud and AI-powered solutions tailored to small and midsize enterprises.': 'Premium consultancy for SAP Business One, AWS Cloud and AI-powered solutions tailored to small and midsize enterprises.',
   'Discover Our Approach': 'Discover Our Approach',
   
   // Services Section
@@ -16,7 +17,11 @@ export const en = {
   'AWS Cloud Hosting & DevOps': 'AWS Cloud Hosting & DevOps',
   'AI Reporting & Automation': 'AI Reporting & Automation',
   'IT Support & Integrations': 'IT Support & Integrations',
-  
+  'Complete ERP solutions tailored to your business processes with expert guidance and support.': 'Complete ERP solutions tailored to your business processes with expert guidance and support.',
+  'Secure, scalable and high-performance infrastructure with continuous delivery pipelines.': 'Secure, scalable and high-performance infrastructure with continuous delivery pipelines.',
+  'Smart reporting tools and AI-enhanced automation to transform data into actionable insights.': 'Smart reporting tools and AI-enhanced automation to transform data into actionable insights.',
+  'Seamless integration of all systems with reliable ongoing technical support.': 'Seamless integration of all systems with reliable ongoing technical support.',
+
   // Why Consularity Section
   'Why Consularity': 'Why Consularity',
   'Expert-led Implementations': 'Expert-led Implementations',
@@ -24,6 +29,8 @@ export const en = {
   'AI-Enhanced Operations': 'AI-Enhanced Operations',
   'Our team brings deep expertise in business systems, ensuring smooth deployment and maximum value.':
    'Our team brings deep expertise in business systems, ensuring smooth deployment and maximum value.',
+  'Future-proof solutions that grow with your business needs while maintaining performance.': 'Future-proof solutions that grow with your business needs while maintaining performance.',
+  'Leverage the power of AI to optimize your operations and gain competitive advantage.': 'Leverage the power of AI to optimize your operations and gain competitive advantage.',
   
   // Project Timeline Section
   'Project Timeline': 'Project Timeline',
@@ -54,6 +61,7 @@ export const en = {
   
   // Testimonials Section
   'Client Testimonials': 'Client Testimonials',
+  'Don\'t just take our word for it. Hear what our clients have to say about working with Consularity.': 'Don\'t just take our word for it. Hear what our clients have to say about working with Consularity.',
   'Consularity transformed our entire business operations. Their SAP implementation was smooth and their ongoing support has been exceptional.': 
     'Consularity transformed our entire business operations. Their SAP implementation was smooth and their ongoing support has been exceptional.',
   'The AI-powered reporting tools have given us insights we never thought possible. We can now make data-driven decisions with confidence.': 
@@ -69,10 +77,18 @@ export const en = {
   
   // Impact Sections
   'Our Impact': 'Our Impact',
+  'At Consularity, we measure our success by the transformative outcomes we deliver for our clients. Each case study represents a journey through the technological singularity, resulting in measurable business improvements and competitive advantages.':'At Consularity, we measure our success by the transformative outcomes we deliver for our clients. Each case study represents a journey through the technological singularity, resulting in measurable business improvements and competitive advantages.',
   'Impact Metrics': 'Impact Metrics',
+  'Visualizing the measurable impact of our solutions across client implementations': 'Visualizing the measurable impact of our solutions across client implementations',
+  'Performance': 'Performance',
+  'Cost Reduction': 'Cost Reduction',
+  'Implementation Timeline': 'Implementation Timeline',
+  'Baseline': 'Baseline',
+  'With Consularity': 'With Consularity',
   
   // CTA Section
   'Let\'s start your transformation': 'Let\'s start your transformation',
+  'Ready to leverage cutting-edge technology to transform your business operations? Let\'s discuss how Consularity can help you achieve your goals.': 'Ready to leverage cutting-edge technology to transform your business operations? Let\'s discuss how Consularity can help you achieve your goals.',
   'Start a Conversation': 'Start a Conversation',
   
   // Footer

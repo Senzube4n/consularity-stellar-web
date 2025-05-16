@@ -7,7 +7,8 @@ export const ro = {
   'About Us': 'Despre noi',
   'Contact': 'Contact',
   'Let\'s Talk': 'Să discutăm',
-  'Where AI, Cloud, and Business Systems Converge': 'Unde AI, Cloud și sistemele de afaceri converg',
+  'Where AI, Cloud, and Business Systems Converge': 'Unde AI, Cloud și sistemele de afaceri se unesc',
+  'Premium consultancy for SAP Business One, AWS Cloud and AI-powered solutions tailored to small and midsize enterprises.': 'Consultanță premium pentru SAP Business One, AWS Cloud și soluții bazate pe inteligență artificială, adaptate întreprinderilor mici și mijlocii.',
   'Discover Our Approach': 'Descoperă abordarea noastră',
   
   // Services Section
@@ -16,17 +17,24 @@ export const ro = {
   'AWS Cloud Hosting & DevOps': 'AWS Cloud Hosting și DevOps',
   'AI Reporting & Automation': 'Raportare și automatizare AI',
   'IT Support & Integrations': 'Suport IT și integrări',
-  
+  'Complete ERP solutions tailored to your business processes with expert guidance and support.': 'Soluții ERP complete, personalizate pentru procesele afacerii tale, susținute de expertiză și suport dedicat.',
+  'Secure, scalable and high-performance infrastructure with continuous delivery pipelines.': 'O infrastructură sigură, scalabilă și de înaltă performanță, susținută de procese automate de livrare continuă.',
+  'Smart reporting tools and AI-enhanced automation to transform data into actionable insights.': 'Instrumente avansate de raportare și automatizare cu inteligență artificială, care transformă datele în decizii concrete.',
+  'Seamless integration of all systems with reliable ongoing technical support.': 'Integrare perfectă a tuturor sistemelor, cu suport tehnic continuu și de încredere.',
+
   // Why Consularity Section
-  'Why Consularity': 'De ce Consularity',
+  'Why Consularity': 'De ce noi',
   'Expert-led Implementations': 'Implementări conduse de experți',
   'Scalable Infrastructure': 'Infrastructură scalabilă',
   'AI-Enhanced Operations': 'Operațiuni îmbunătățite cu AI',
   'Our team brings deep expertise in business systems, ensuring smooth deployment and maximum value.':
    'Echipa noastră aduce o vastă expertiză în sistemele de business, asigurând o implementare fără probleme și o valoare maximă.',
+  'Future-proof solutions that grow with your business needs while maintaining performance.': 'Soluții viabile pe termen lung, care evoluează odată cu nevoile afacerii tale, menținând performanța.',
+  'Leverage the power of AI to optimize your operations and gain competitive advantage.': 'Valorificarea inteligenței artificială pentru a eficientiza procesele și a te diferenția pe piață.',
   
   // Project Timeline Section
-  'Project Timeline': 'Cronologia Proiectului',
+  'Project Timeline': 'Etapele Proiectului',
+  'Our proven implementation methodology ensures a smooth, predictable journey from concept to completion': 'Onze beproefde implementatiemethodologie zorgt voor een soepel en voorspelbaar traject van concept tot oplevering.',
   'Discovery & Planning': 'Descoperire și Planificare',
   'System Design': 'Proiectare Sistem',
   'Development': 'Dezvoltare',
@@ -53,7 +61,8 @@ export const ro = {
     'Suport continuu, optimizarea performanței și îmbunătățire continuă. Rămânem alături de dvs. pentru a asigura un succes de durată.',
   
   // Testimonials Section
-  'Client Testimonials': 'Testimoniale Clienți',
+  'Client Testimonials': 'Părerea Clienților Noștri',
+  'Don\'t just take our word for it. Hear what our clients have to say about working with Consularity.': 'Lasă-i pe clienții noștri să-ți povestească despre experiența lor alături de Consularity.',
   'Consularity transformed our entire business operations. Their SAP implementation was smooth and their ongoing support has been exceptional.': 
     'Consularity ne-a transformat întreaga operațiune de afaceri. Implementarea SAP a fost fără probleme, iar suportul lor continuu a fost excepțional.',
   'The AI-powered reporting tools have given us insights we never thought possible. We can now make data-driven decisions with confidence.': 
@@ -69,10 +78,18 @@ export const ro = {
   
   // Impact Sections
   'Our Impact': 'Impactul Nostru',
+  'At Consularity, we measure our success by the transformative outcomes we deliver for our clients. Each case study represents a journey through the technological singularity, resulting in measurable business improvements and competitive advantages.':'La Consularity, ne măsurăm succesul prin rezultatele transformatoare pe care le oferim clienților noștri. Fiecare studiu de caz reprezintă o călătorie prin singularitatea tehnologică, generând îmbunătățiri măsurabile ale afacerii și avantaje competitive.',
   'Impact Metrics': 'Metrici de Impact',
+  'Visualizing the measurable impact of our solutions across client implementations': 'Vizualizarea impactului măsurabil al soluțiilor noastre în cadrul implementărilor pentru clienți.',
+  'Performance': 'Performanță',
+  'Cost Reduction': 'Reducerea costurilor',
+  'Implementation Timeline': 'Durata implementării',
+  'Baseline': 'Linie de bază',
+  'With Consularity': 'Cu Consularity',
   
   // CTA Section
   'Let\'s start your transformation': 'Să începem transformarea ta',
+  'Ready to leverage cutting-edge technology to transform your business operations? Let\'s discuss how Consularity can help you achieve your goals.': 'Pregătit să folosești tehnologia de vârf pentru a-ți revoluționa afacerea? Hai să vedem împreună cum te poate sprijini Consularity în atingerea țelurilor tale.',
   'Start a Conversation': 'Începe o conversație',
   
   // Footer
