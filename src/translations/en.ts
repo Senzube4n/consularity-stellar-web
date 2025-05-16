@@ -34,6 +34,7 @@ export const en = {
   
   // Project Timeline Section
   'Project Timeline': 'Project Timeline',
+  'Our proven implementation methodology ensures a smooth, predictable journey from concept to completion': 'Our proven implementation methodology ensures a smooth, predictable journey from concept to completion',
   'Discovery & Planning': 'Discovery & Planning',
   'System Design': 'System Design',
   'Development': 'Development',
