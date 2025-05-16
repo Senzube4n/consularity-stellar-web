@@ -69,12 +69,12 @@ const Navbar = () => {
                 </Link>
               </NavigationMenuItem>
               
-              <NavigationMenuItem>
-                <Link to="#" className="nav-link px-3 py-2 inline-block">
-                  {t('Services')}
-                  <ChevronDown className="inline-block ml-1 h-4 w-4" />
-                </Link>
-                <NavigationMenuContent>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="nav-link px-3 py-2 inline-flex items-center">
+                    {t('Services')}
+                    <ChevronDown className="ml-1 h-4 w-4" />
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
                   <ul className="grid w-[400px] md:w-[500px] lg:w-[600px] grid-cols-2 gap-3 p-4">
                     <li>
                       <NavigationMenuLink asChild>
