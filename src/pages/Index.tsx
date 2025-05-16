@@ -273,9 +273,7 @@ const Index = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('Our Impact')}</h2>
             <div className="w-20 h-1 bg-primary mx-auto" />
             <p className="text-lg text-muted-foreground mt-6 max-w-3xl mx-auto">
-              At Consularity, we measure our success by the transformative outcomes we deliver for our clients. 
-              Each case study represents a journey through the technological singularity, resulting in measurable 
-              business improvements and competitive advantages.
+              At Consularity, we measure our success by the transformative outcomes we deliver for our clients. Each case study represents a journey through the technological singularity, resulting in measurable business improvements and competitive advantages.
             </p>
           </div>
           
