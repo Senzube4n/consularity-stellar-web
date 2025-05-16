@@ -19,7 +19,7 @@ declare global {
 }
 
 // Google Analytics tracking ID - replace with your actual GA ID
-const GA_TRACKING_ID = 'G-XXXXXXXXXX'; // Replace with your GA4 Measurement ID
+const GA_TRACKING_ID = 'G-SH74YB75PR'; // Replace with your GA4 Measurement ID
 
 // Cookie consent options
 type ConsentOptions = {

@@ -46,7 +46,7 @@ const Contact = () => {
           message: formData.message,
           reply_to: formData.email,
         },
-        'YOUR_PUBLIC_KEY'  // Replace with your EmailJS public key
+        '6L9EQRE9KHlmKk7Qw'  // Replace with your EmailJS public key
       );
       
       console.log('Email sent successfully:', result);
