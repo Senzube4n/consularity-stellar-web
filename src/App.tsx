@@ -1,74 +1,81 @@
+import React, { useState, useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { ThemeProvider } from "@/components/theme-provider"
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ToastProvider } from '@/components/providers/toast-provider';
+import { LanguageProvider } from '@/hooks/useLanguage';
+import { CookieConsentProvider } from '@/hooks/useCookieConsent';
+import CookieConsent from '@/components/CookieConsent';
 
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { ThemeProvider } from "@/hooks/useTheme";
-import { LanguageProvider } from "@/hooks/useLanguage";
-import { useEffect } from "react";
-import Index from "./pages/Index";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import NotFound from "./pages/NotFound";
-import Privacy from "./pages/Privacy";
-import Terms from "./pages/Terms";
-
-// Service pages
-import SapBusinessOne from "./pages/services/SapBusinessOne";
-import AwsCloud from "./pages/services/AwsCloud";
-import AiReporting from "./pages/services/AiReporting";
-import PowerBI from "./pages/services/PowerBI";
-import WebsiteDevelopment from "./pages/services/WebsiteDevelopment";
-import ItSupport from "./pages/services/ItSupport";
-
-import CookieConsent from "./components/CookieConsent";
+import Index from '@/pages/Index';
+import About from '@/pages/About';
+import Contact from '@/pages/Contact';
+import SapBusinessOne from '@/pages/services/SapBusinessOne';
+import AwsCloud from '@/pages/services/AwsCloud';
+import AiReporting from '@/pages/services/AiReporting';
+import PowerBi from '@/pages/services/PowerBi';
+import WebsiteDevelopment from '@/pages/services/WebsiteDevelopment';
+import ItSupport from '@/pages/services/ItSupport';
+import WorkflowAutomation from '@/pages/services/WorkflowAutomation'; // Add this import
+import PrivacyPolicy from '@/pages/legal/PrivacyPolicy';
+import TermsOfService from '@/pages/legal/TermsOfService';
+import NotFound from '@/pages/NotFound';
 
 const queryClient = new QueryClient();
 
-// Scroll to top component
-const ScrollToTop = () => {
-  const { pathname } = useLocation();
+// ScrollToTopOnRouteChange component
+const ScrollToTopOnRouteChange = ({ children }: { children: React.ReactNode }) => {
+  const location = useLocation();
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [pathname]);
+  }, [location]);
 
-  return null;
+  return <>{children}</>;
 };
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <ThemeProvider>
-      <LanguageProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <ScrollToTop />
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/privacy" element={<Privacy />} />
-              <Route path="/terms" element={<Terms />} />
-              
-              {/* Service routes */}
-              <Route path="/services/sap-business-one" element={<SapBusinessOne />} />
-              <Route path="/services/aws-cloud" element={<AwsCloud />} />
-              <Route path="/services/ai-reporting" element={<AiReporting />} />
-              <Route path="/services/power-bi" element={<PowerBI />} />
-              <Route path="/services/website-development" element={<WebsiteDevelopment />} />
-              <Route path="/services/it-support" element={<ItSupport />} />
-              
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-            <CookieConsent />
-          </BrowserRouter>
-        </TooltipProvider>
-      </LanguageProvider>
+function App() {
+  const [isCookieConsentAccepted, setIsCookieConsentAccepted] = useState(false);
+
+  useEffect(() => {
+    // Check if the user has already accepted the cookie consent
+    const consent = localStorage.getItem('cookieConsent');
+    if (consent === 'accepted') {
+      setIsCookieConsentAccepted(true);
+    }
+  }, []);
+
+  return (
+    <ThemeProvider defaultTheme="system" storageKey="consularity-theme">
+      <ToastProvider>
+        <QueryClientProvider client={queryClient}>
+          <LanguageProvider>
+            <CookieConsentProvider>
+              <ScrollToTopOnRouteChange>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/services/sap-business-one" element={<SapBusinessOne />} />
+                  <Route path="/services/aws-cloud" element={<AwsCloud />} />
+                  <Route path="/services/ai-reporting" element={<AiReporting />} />
+                  <Route path="/services/power-bi" element={<PowerBi />} />
+                  <Route path="/services/website-development" element={<WebsiteDevelopment />} />
+                  <Route path="/services/it-support" element={<ItSupport />} />
+                  <Route path="/services/workflow-automation" element={<WorkflowAutomation />} /> {/* Add this route */}
+                  <Route path="/legal/privacy-policy" element={<PrivacyPolicy />} />
+                  <Route path="/legal/terms-of-service" element={<TermsOfService />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+                
+                <CookieConsent />
+              </ScrollToTopOnRouteChange>
+            </CookieConsentProvider>
+          </LanguageProvider>
+        </QueryClientProvider>
+      </ToastProvider>
     </ThemeProvider>
-  </QueryClientProvider>
-);
+  );
+}
 
 export default App;

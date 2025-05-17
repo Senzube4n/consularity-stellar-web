@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -132,6 +131,16 @@ const Navbar = () => {
                           <div className="text-sm font-medium leading-none">{t('IT Support')}</div>
                           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
                             {t('Integrations and technical support')}
+                          </p>
+                        </Link>
+                      </NavigationMenuLink>
+                    </li>
+                    <li>
+                      <NavigationMenuLink asChild>
+                        <Link to="/services/workflow-automation" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                          <div className="text-sm font-medium leading-none">{t('Workflow Automation')}</div>
+                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                            {t('Streamline processes with visual workflow automation')}
                           </p>
                         </Link>
                       </NavigationMenuLink>

@@ -1,8 +1,7 @@
-
 import React, { useRef, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Server, Cloud, Database, Settings, BarChart, Globe } from "lucide-react";
+import { ArrowRight, Server, Cloud, Database, Settings, BarChart, Globe, Workflow } from "lucide-react";
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ParticlesBackground from '@/components/ParticlesBackground';
@@ -179,7 +178,7 @@ const Index = () => {
             />
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             <ServiceCard 
               titleKey="service_web_title" 
               descriptionKey="service_web_desc"
@@ -192,6 +191,13 @@ const Index = () => {
               descriptionKey="service_it_desc"
               icon={<Settings className="w-6 h-6" />}
               link="/services/it-support"
+            />
+            
+            <ServiceCard 
+              titleKey="service_workflow_title" 
+              descriptionKey="service_workflow_desc"
+              icon={<Workflow className="w-6 h-6" />}
+              link="/services/workflow-automation"
             />
           </div>
         </div>
