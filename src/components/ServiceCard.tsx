@@ -5,15 +5,15 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { useLanguage } from '@/hooks/useLanguage';
 
 interface ServiceCardProps {
-  title: string;
-  description: string;
+  title?: string;  // Make title optional
+  description?: string;  // Make description optional
   icon: React.ReactNode;
   link?: string;
   titleKey?: string;  // Translation key for title
   descriptionKey?: string;  // Translation key for description
 }
 
-const ServiceCard = ({ title, description, icon, link, titleKey, descriptionKey }: ServiceCardProps) => {
+const ServiceCard = ({ title = '', description = '', icon, link, titleKey, descriptionKey }: ServiceCardProps) => {
   const { t } = useLanguage();
   
   // Use translation keys if provided, otherwise use the direct strings
