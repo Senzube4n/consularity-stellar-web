@@ -2,13 +2,43 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
-import { Workflow, ArrowRight, CheckCircle, Zap, Flow, Layers } from "lucide-react";
+import { Workflow, ArrowRight, CheckCircle, Zap, BarChart, Layers, Database } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import PageHeader from '@/components/PageHeader';
-import ServiceFeature from '@/components/ServiceFeature';
 import { useLanguage } from '@/hooks/useLanguage';
+
+// Create a simple PageHeader component inline since it was missing
+const PageHeader = ({ title, description, icon }) => {
+  return (
+    <div className="bg-muted py-12">
+      <div className="consularity-container">
+        <div className="flex flex-col items-center text-center">
+          <div className="inline-block bg-primary/10 p-3 rounded-full mb-4">
+            {icon}
+          </div>
+          <h1 className="text-4xl font-bold mb-4">{title}</h1>
+          <p className="text-xl max-w-3xl mx-auto">{description}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Create a simple ServiceFeature component inline since it was missing
+const ServiceFeature = ({ icon, title, description }) => {
+  return (
+    <div className="bg-card rounded-lg p-6 shadow border border-border">
+      <div className="flex flex-col items-center text-center">
+        <div className="bg-primary/10 p-3 rounded-full mb-4">
+          {icon}
+        </div>
+        <h3 className="font-bold text-xl mb-3">{title}</h3>
+        <p>{description}</p>
+      </div>
+    </div>
+  );
+};
 
 const WorkflowAutomation = () => {
   const { t } = useLanguage();
@@ -76,7 +106,7 @@ const WorkflowAutomation = () => {
             />
             
             <ServiceFeature
-              icon={<Flow className="w-8 h-8" />}
+              icon={<BarChart className="w-8 h-8" />}
               title={t('Seamless Integration')}
               description={t('Connect over 200+ applications and services without complex coding.')}
             />

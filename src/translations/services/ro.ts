@@ -120,8 +120,6 @@ export const servicesRo = {
   'Our Workflow Automation Services': 'Serviciile Noastre de Automatizare a Fluxurilor de Lucru',
   'Workflow Design & Implementation': 'Proiectare și Implementare Flux de Lucru',
   'Complete workflow design and implementation services including requirements gathering, workflow modeling, and deployment.': 'Servicii complete de proiectare și implementare a fluxurilor de lucru, inclusiv colectarea cerințelor, modelarea fluxurilor de lucru și implementarea.',
-  'Integration Services': 'Servicii de Integrare',
-  'Connect n8n with your existing systems and third-party applications for seamless data flow.': 'Conectați n8n cu sistemele dvs. existente și aplicațiile terțe pentru un flux de date fără probleme.',
   'Custom Node Development': 'Dezvoltare Noduri Personalizate',
   'Develop custom nodes to extend n8n\'s capabilities for your specific business requirements.': 'Dezvoltați noduri personalizate pentru a extinde capacitățile n8n pentru cerințele specifice ale afacerii dvs.',
   'Training & Support': 'Instruire și Suport',

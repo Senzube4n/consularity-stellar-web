@@ -1,7 +1,8 @@
+
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { ThemeProvider } from "@/components/theme-provider"
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { ThemeProvider } from "@/components/theme-provider";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ToastProvider } from '@/components/providers/toast-provider';
 import { LanguageProvider } from '@/hooks/useLanguage';
 import { CookieConsentProvider } from '@/hooks/useCookieConsent';
@@ -16,7 +17,7 @@ import AiReporting from '@/pages/services/AiReporting';
 import PowerBi from '@/pages/services/PowerBi';
 import WebsiteDevelopment from '@/pages/services/WebsiteDevelopment';
 import ItSupport from '@/pages/services/ItSupport';
-import WorkflowAutomation from '@/pages/services/WorkflowAutomation'; // Add this import
+import WorkflowAutomation from '@/pages/services/WorkflowAutomation';
 import PrivacyPolicy from '@/pages/legal/PrivacyPolicy';
 import TermsOfService from '@/pages/legal/TermsOfService';
 import NotFound from '@/pages/NotFound';
@@ -62,7 +63,7 @@ function App() {
                   <Route path="/services/power-bi" element={<PowerBi />} />
                   <Route path="/services/website-development" element={<WebsiteDevelopment />} />
                   <Route path="/services/it-support" element={<ItSupport />} />
-                  <Route path="/services/workflow-automation" element={<WorkflowAutomation />} /> {/* Add this route */}
+                  <Route path="/services/workflow-automation" element={<WorkflowAutomation />} />
                   <Route path="/legal/privacy-policy" element={<PrivacyPolicy />} />
                   <Route path="/legal/terms-of-service" element={<TermsOfService />} />
                   <Route path="*" element={<NotFound />} />

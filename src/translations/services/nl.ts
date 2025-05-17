@@ -120,8 +120,6 @@ export const servicesNl = {
   'Our Workflow Automation Services': 'Onze workflow automatiseringsdiensten',
   'Workflow Design & Implementation': 'Workflow ontwerp & implementatie',
   'Complete workflow design and implementation services including requirements gathering, workflow modeling, and deployment.': 'Complete workflow ontwerp- en implementatiediensten, inclusief het verzamelen van vereisten, workflow modellering en implementatie.',
-  'Integration Services': 'Integratiediensten',
-  'Connect n8n with your existing systems and third-party applications for seamless data flow.': 'Verbind n8n met uw bestaande systemen en applicaties van derden voor een naadloze gegevensstroom.',
   'Custom Node Development': 'Ontwikkeling van aangepaste nodes',
   'Develop custom nodes to extend n8n\'s capabilities for your specific business requirements.': 'Ontwikkel aangepaste nodes om de mogelijkheden van n8n uit te breiden voor uw specifieke bedrijfsvereisten.',
   'Training & Support': 'Training & ondersteuning',
