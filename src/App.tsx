@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from "@/components/theme-provider";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ToastProvider } from '@/components/providers/toast-provider';
@@ -47,35 +47,37 @@ function App() {
   }, []);
 
   return (
-    <ThemeProvider defaultTheme="system" storageKey="consularity-theme">
-      <ToastProvider>
-        <QueryClientProvider client={queryClient}>
-          <LanguageProvider>
-            <CookieConsentProvider>
-              <ScrollToTopOnRouteChange>
-                <Routes>
-                  <Route path="/" element={<Index />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/contact" element={<Contact />} />
-                  <Route path="/services/sap-business-one" element={<SapBusinessOne />} />
-                  <Route path="/services/aws-cloud" element={<AwsCloud />} />
-                  <Route path="/services/ai-reporting" element={<AiReporting />} />
-                  <Route path="/services/power-bi" element={<PowerBi />} />
-                  <Route path="/services/website-development" element={<WebsiteDevelopment />} />
-                  <Route path="/services/it-support" element={<ItSupport />} />
-                  <Route path="/services/workflow-automation" element={<WorkflowAutomation />} />
-                  <Route path="/legal/privacy-policy" element={<PrivacyPolicy />} />
-                  <Route path="/legal/terms-of-service" element={<TermsOfService />} />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-                
-                <CookieConsent />
-              </ScrollToTopOnRouteChange>
-            </CookieConsentProvider>
-          </LanguageProvider>
-        </QueryClientProvider>
-      </ToastProvider>
-    </ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider defaultTheme="system" storageKey="consularity-theme">
+        <ToastProvider>
+          <QueryClientProvider client={queryClient}>
+            <LanguageProvider>
+              <CookieConsentProvider>
+                <ScrollToTopOnRouteChange>
+                  <Routes>
+                    <Route path="/" element={<Index />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/services/sap-business-one" element={<SapBusinessOne />} />
+                    <Route path="/services/aws-cloud" element={<AwsCloud />} />
+                    <Route path="/services/ai-reporting" element={<AiReporting />} />
+                    <Route path="/services/power-bi" element={<PowerBi />} />
+                    <Route path="/services/website-development" element={<WebsiteDevelopment />} />
+                    <Route path="/services/it-support" element={<ItSupport />} />
+                    <Route path="/services/workflow-automation" element={<WorkflowAutomation />} />
+                    <Route path="/legal/privacy-policy" element={<PrivacyPolicy />} />
+                    <Route path="/legal/terms-of-service" element={<TermsOfService />} />
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                  
+                  <CookieConsent />
+                </ScrollToTopOnRouteChange>
+              </CookieConsentProvider>
+            </LanguageProvider>
+          </QueryClientProvider>
+        </ToastProvider>
+      </ThemeProvider>
+    </BrowserRouter>
   );
 }
 
