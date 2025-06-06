@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '@/hooks/useLanguage';
-import ParallaxHero from '@/components/ParallaxHero';
 
 interface ServiceLayoutProps {
   children: ReactNode;
@@ -28,11 +27,9 @@ const ServiceLayout = ({ children, title, description, image }: ServiceLayoutPro
       <Navbar />
       
       <main className="flex-grow pt-24">
-        {/* Hero Section with Parallax */}
-        <section className="py-20 bg-gradient-to-b from-primary/5 to-transparent relative overflow-hidden">
-          <ParallaxHero speed={0.2} className="absolute inset-0 bg-dots opacity-50" />
-          
-          <div className="consularity-container relative z-10">
+        {/* Hero Section */}
+        <section className="py-20 bg-gradient-to-b from-primary/5 to-transparent">
+          <div className="consularity-container">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div>
                 <h1 className="text-4xl md:text-5xl font-bold mb-6">{t(title)}</h1>
@@ -62,8 +59,8 @@ const ServiceLayout = ({ children, title, description, image }: ServiceLayoutPro
         
         {children}
         
-        {/* CTA Section with Background Pattern */}
-        <section className="py-20 bg-primary/5 dark:bg-primary/10 bg-hexagon">
+        {/* CTA Section */}
+        <section className="py-20 bg-primary/5 dark:bg-primary/10">
           <div className="consularity-container text-center">
             <h2 className="text-3xl font-bold mb-6">{t('Ready to transform your business?')}</h2>
             <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
