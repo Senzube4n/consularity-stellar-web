@@ -13,6 +13,7 @@ import ImpactMetrics from '@/components/ImpactMetrics';
 import PerformanceCharts from '@/components/PerformanceCharts';
 import ProjectTimeline from '@/components/ProjectTimeline';
 import Testimonials from '@/components/Testimonials';
+import ScrollAnimation from '@/components/ScrollAnimation';
 
 /**
  * Index Page Component
@@ -144,62 +145,68 @@ const Index = () => {
         
         <div className="consularity-container">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('Our Services')}</h2>
-            <div className="w-20 h-1 bg-primary mx-auto" />
+            <ScrollAnimation animation="slide-up">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('Our Services')}</h2>
+              <div className="w-20 h-1 bg-primary mx-auto" />
+            </ScrollAnimation>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
-            <ServiceCard 
-              titleKey="service_sap_title" 
-              descriptionKey="service_sap_desc"
-              icon={<Database className="w-6 h-6" />}
-              link="/services/sap-business-one"
-            />
-            
-            <ServiceCard 
-              titleKey="service_aws_title" 
-              descriptionKey="service_aws_desc"
-              icon={<Cloud className="w-6 h-6" />}
-              link="/services/aws-cloud"
-            />
-            
-            <ServiceCard 
-              titleKey="service_ai_title" 
-              descriptionKey="service_ai_desc"
-              icon={<Server className="w-6 h-6" />}
-              link="/services/ai-reporting"
-            />
-            
-            <ServiceCard 
-              titleKey="service_powerbi_title" 
-              descriptionKey="service_powerbi_desc"
-              icon={<BarChart className="w-6 h-6" />}
-              link="/services/power-bi"
-            />
-          </div>
+          <ScrollAnimation animation="fade-in" delay={200}>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
+              <ServiceCard 
+                titleKey="service_sap_title" 
+                descriptionKey="service_sap_desc"
+                icon={<Database className="w-6 h-6" />}
+                link="/services/sap-business-one"
+              />
+              
+              <ServiceCard 
+                titleKey="service_aws_title" 
+                descriptionKey="service_aws_desc"
+                icon={<Cloud className="w-6 h-6" />}
+                link="/services/aws-cloud"
+              />
+              
+              <ServiceCard 
+                titleKey="service_ai_title" 
+                descriptionKey="service_ai_desc"
+                icon={<Server className="w-6 h-6" />}
+                link="/services/ai-reporting"
+              />
+              
+              <ServiceCard 
+                titleKey="service_powerbi_title" 
+                descriptionKey="service_powerbi_desc"
+                icon={<BarChart className="w-6 h-6" />}
+                link="/services/power-bi"
+              />
+            </div>
+          </ScrollAnimation>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <ServiceCard 
-              titleKey="service_web_title" 
-              descriptionKey="service_web_desc"
-              icon={<Globe className="w-6 h-6" />}
-              link="/services/website-development"
-            />
-            
-            <ServiceCard 
-              titleKey="service_it_title" 
-              descriptionKey="service_it_desc"
-              icon={<Settings className="w-6 h-6" />}
-              link="/services/it-support"
-            />
-            
-            <ServiceCard 
-              titleKey="service_workflow_title" 
-              descriptionKey="service_workflow_desc"
-              icon={<Workflow className="w-6 h-6" />}
-              link="/services/workflow-automation"
-            />
-          </div>
+          <ScrollAnimation animation="fade-in" delay={400}>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              <ServiceCard 
+                titleKey="service_web_title" 
+                descriptionKey="service_web_desc"
+                icon={<Globe className="w-6 h-6" />}
+                link="/services/website-development"
+              />
+              
+              <ServiceCard 
+                titleKey="service_it_title" 
+                descriptionKey="service_it_desc"
+                icon={<Settings className="w-6 h-6" />}
+                link="/services/it-support"
+              />
+              
+              <ServiceCard 
+                titleKey="service_workflow_title" 
+                descriptionKey="service_workflow_desc"
+                icon={<Workflow className="w-6 h-6" />}
+                link="/services/workflow-automation"
+              />
+            </div>
+          </ScrollAnimation>
         </div>
       </section>
       
@@ -218,28 +225,36 @@ const Index = () => {
         
         <div className="consularity-container">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('Why Consularity')}</h2>
-            <div className="w-20 h-1 bg-primary mx-auto" />
+            <ScrollAnimation animation="slide-up">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('Why Consularity')}</h2>
+              <div className="w-20 h-1 bg-primary mx-auto" />
+            </ScrollAnimation>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            <FeatureColumn 
-              title="Expert-led Implementations" 
-              description="Our team brings deep expertise in business systems, ensuring smooth deployment and maximum value."
-              icon={<Server className="w-6 h-6" />}
-            />
+            <ScrollAnimation animation="slide-up" delay={100}>
+              <FeatureColumn 
+                title="Expert-led Implementations" 
+                description="Our team brings deep expertise in business systems, ensuring smooth deployment and maximum value."
+                icon={<Server className="w-6 h-6" />}
+              />
+            </ScrollAnimation>
             
-            <FeatureColumn 
-              title="Scalable Infrastructure" 
-              description="Future-proof solutions that grow with your business needs while maintaining performance."
-              icon={<Cloud className="w-6 h-6" />}
-            />
+            <ScrollAnimation animation="slide-up" delay={200}>
+              <FeatureColumn 
+                title="Scalable Infrastructure" 
+                description="Future-proof solutions that grow with your business needs while maintaining performance."
+                icon={<Cloud className="w-6 h-6" />}
+              />
+            </ScrollAnimation>
             
-            <FeatureColumn 
-              title="AI-Enhanced Operations" 
-              description="Leverage the power of AI to optimize your operations and gain competitive advantage."
-              icon={<Database className="w-6 h-6" />}
-            />
+            <ScrollAnimation animation="slide-up" delay={300}>
+              <FeatureColumn 
+                title="AI-Enhanced Operations" 
+                description="Leverage the power of AI to optimize your operations and gain competitive advantage."
+                icon={<Database className="w-6 h-6" />}
+              />
+            </ScrollAnimation>
           </div>
         </div>
       </section>
@@ -254,14 +269,20 @@ const Index = () => {
         
         <div className="consularity-container">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('Project Timeline')}</h2>
-            <div className="w-20 h-1 bg-primary mx-auto" />
-            <p className="text-lg text-muted-foreground mt-6 max-w-3xl mx-auto">
-              {t('Our proven implementation methodology ensures a smooth, predictable journey from concept to completion')}
-            </p>
+            <ScrollAnimation animation="slide-up">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('Project Timeline')}</h2>
+              <div className="w-20 h-1 bg-primary mx-auto" />
+            </ScrollAnimation>
+            <ScrollAnimation animation="fade-in" delay={200}>
+              <p className="text-lg text-muted-foreground mt-6 max-w-3xl mx-auto">
+                {t('Our proven implementation methodology ensures a smooth, predictable journey from concept to completion')}
+              </p>
+            </ScrollAnimation>
           </div>
           
-          <ProjectTimeline />
+          <ScrollAnimation animation="fade-in" delay={300}>
+            <ProjectTimeline />
+          </ScrollAnimation>
         </div>
       </section>
       
@@ -275,14 +296,20 @@ const Index = () => {
         
         <div className="consularity-container">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('Client Testimonials')}</h2>
-            <div className="w-20 h-1 bg-primary mx-auto" />
-            <p className="text-lg text-muted-foreground mt-6 max-w-3xl mx-auto">
-              {t('Don\'t just take our word for it. Hear what our clients have to say about working with Consularity.')}
-            </p>
+            <ScrollAnimation animation="slide-up">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('Client Testimonials')}</h2>
+              <div className="w-20 h-1 bg-primary mx-auto" />
+            </ScrollAnimation>
+            <ScrollAnimation animation="fade-in" delay={200}>
+              <p className="text-lg text-muted-foreground mt-6 max-w-3xl mx-auto">
+                {t('Don\'t just take our word for it. Hear what our clients have to say about working with Consularity.')}
+              </p>
+            </ScrollAnimation>
           </div>
           
-          <Testimonials />
+          <ScrollAnimation animation="fade-in" delay={300}>
+            <Testimonials />
+          </ScrollAnimation>
         </div>
       </section>
       
@@ -296,14 +323,20 @@ const Index = () => {
         
         <div className="consularity-container">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('Our Impact')}</h2>
-            <div className="w-20 h-1 bg-primary mx-auto" />
-            <p className="text-lg text-muted-foreground mt-6 max-w-3xl mx-auto">
-              {t('At Consularity, we measure our success by the transformative outcomes we deliver for our clients. Each case study represents a journey through the technological singularity, resulting in measurable business improvements and competitive advantages.')}
-            </p>
+            <ScrollAnimation animation="slide-up">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('Our Impact')}</h2>
+              <div className="w-20 h-1 bg-primary mx-auto" />
+            </ScrollAnimation>
+            <ScrollAnimation animation="fade-in" delay={200}>
+              <p className="text-lg text-muted-foreground mt-6 max-w-3xl mx-auto">
+                {t('At Consularity, we measure our success by the transformative outcomes we deliver for our clients. Each case study represents a journey through the technological singularity, resulting in measurable business improvements and competitive advantages.')}
+              </p>
+            </ScrollAnimation>
           </div>
           
-          <ImpactMetrics />
+          <ScrollAnimation animation="slide-up" delay={300}>
+            <ImpactMetrics />
+          </ScrollAnimation>
         </div>
       </section>
       
@@ -317,14 +350,20 @@ const Index = () => {
         
         <div className="consularity-container">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('Impact Metrics')}</h2>
-            <div className="w-20 h-1 bg-primary mx-auto" />
-            <p className="text-lg text-muted-foreground mt-6 max-w-3xl mx-auto">
-              {t('Visualizing the measurable impact of our solutions across client implementations')}
-            </p>
+            <ScrollAnimation animation="slide-up">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('Impact Metrics')}</h2>
+              <div className="w-20 h-1 bg-primary mx-auto" />
+            </ScrollAnimation>
+            <ScrollAnimation animation="fade-in" delay={200}>
+              <p className="text-lg text-muted-foreground mt-6 max-w-3xl mx-auto">
+                {t('Visualizing the measurable impact of our solutions across client implementations')}
+              </p>
+            </ScrollAnimation>
           </div>
           
-          <PerformanceCharts />
+          <ScrollAnimation animation="fade-in" delay={300}>
+            <PerformanceCharts />
+          </ScrollAnimation>
         </div>
       </section>
       
@@ -338,21 +377,27 @@ const Index = () => {
         
         <div className="consularity-container">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              {t('Let\'s start your transformation')}
-            </h2>
+            <ScrollAnimation animation="slide-up">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                {t('Let\'s start your transformation')}
+              </h2>
+            </ScrollAnimation>
             
-            <p className="text-xl text-muted-foreground mb-10">
-              {t('Ready to leverage cutting-edge technology to transform your business operations? Let\'s discuss how Consularity can help you achieve your goals.')}
-            </p>
+            <ScrollAnimation animation="fade-in" delay={200}>
+              <p className="text-xl text-muted-foreground mb-10">
+                {t('Ready to leverage cutting-edge technology to transform your business operations? Let\'s discuss how Consularity can help you achieve your goals.')}
+              </p>
+            </ScrollAnimation>
             
-            <Button 
-              className="cta-button text-lg px-8 py-6"
-              onClick={handleLetsTalkClick}
-            >
-              {t('Let\'s Talk')}
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            <ScrollAnimation animation="slide-up" delay={400}>
+              <Button 
+                className="cta-button text-lg px-8 py-6"
+                onClick={handleLetsTalkClick}
+              >
+                {t('Let\'s Talk')}
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </ScrollAnimation>
           </div>
         </div>
       </section>
