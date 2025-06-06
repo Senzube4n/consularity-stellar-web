@@ -55,12 +55,43 @@
 @layer base {
   * {
     @apply border-border;
+    /* Smooth transitions for all theme-related properties */
+    transition: 
+      background-color 0.5s ease,
+      color 0.5s ease,
+      border-color 0.5s ease,
+      box-shadow 0.5s ease,
+      opacity 0.5s ease;
   }
+  
   body {
     @apply bg-background text-foreground font-sans;
+    /* Explicit transition for body background */
+    transition: background-color 0.5s ease, color 0.5s ease;
   }
+  
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading;
+    transition: color 0.5s ease;
+  }
+  
+  /* Smooth transitions for common elements */
+  button, a, input, textarea, select {
+    transition: 
+      background-color 0.5s ease,
+      color 0.5s ease,
+      border-color 0.5s ease,
+      box-shadow 0.5s ease,
+      opacity 0.5s ease,
+      transform 0.3s ease;
+  }
+  
+  /* Card and container transitions */
+  .card, [class*="card"], [class*="bg-"], [class*="border"] {
+    transition: 
+      background-color 0.5s ease,
+      border-color 0.5s ease,
+      box-shadow 0.5s ease;
   }
 }
 
@@ -114,28 +145,43 @@
   }
   
   .nav-link {
-    @apply relative px-3 py-2 font-medium text-sm opacity-80 hover:opacity-100 transition-opacity;
+    @apply relative px-3 py-2 font-medium text-sm opacity-80 hover:opacity-100;
+    transition: opacity 0.3s ease, color 0.5s ease;
   }
   
   .nav-link:hover::after {
     @apply content-[''] absolute w-full h-0.5 bg-primary bottom-0 left-0 origin-bottom-right scale-x-100;
     transform-origin: bottom left;
-    transition: transform 0.3s ease-out;
+    transition: transform 0.3s ease-out, background-color 0.5s ease;
   }
   
   .service-card {
-    @apply bg-white dark:bg-consularity-dark/80 rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300
+    @apply bg-white dark:bg-consularity-dark/80 rounded-xl p-6 shadow-md hover:shadow-lg
     border border-transparent hover:border-primary/30 hover:bg-gradient-to-br from-white to-primary/5
     dark:hover:bg-gradient-to-br dark:from-consularity-dark dark:to-primary/10;
+    transition: 
+      all 0.3s ease,
+      background-color 0.5s ease,
+      border-color 0.5s ease,
+      box-shadow 0.5s ease;
   }
   
   .cta-button {
-    @apply inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg transition-all 
-    hover:bg-primary/90 hover:shadow-[0_0_15px_rgba(14,165,233,0.5)] font-medium;
+    @apply inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg font-medium;
+    transition: 
+      all 0.3s ease,
+      background-color 0.5s ease,
+      box-shadow 0.5s ease;
+  }
+  
+  .cta-button:hover {
+    @apply bg-primary/90;
+    box-shadow: 0 0 15px rgba(14,165,233,0.5);
   }
   
   .connector-line {
     @apply absolute left-1/2 w-px bg-gradient-to-b from-transparent via-primary/50 to-transparent;
+    transition: background 0.5s ease;
   }
 }
 
@@ -151,6 +197,22 @@
   
   .animate-pulse-glow {
     animation: pulse-glow 2s infinite;
+  }
+  
+  /* Theme transition utilities */
+  .theme-transition {
+    transition: 
+      background-color 0.5s ease,
+      color 0.5s ease,
+      border-color 0.5s ease,
+      box-shadow 0.5s ease;
+  }
+  
+  .theme-transition-fast {
+    transition: 
+      background-color 0.3s ease,
+      color 0.3s ease,
+      border-color 0.3s ease;
   }
 }
 
