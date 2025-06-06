@@ -1,4 +1,3 @@
-
 import React, { useRef, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -6,7 +5,6 @@ import { ArrowRight, Server, Cloud, Database, Settings, BarChart, Globe, Workflo
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ParticlesBackground from '@/components/ParticlesBackground';
-import ParallaxHero from '@/components/ParallaxHero';
 import ServiceCard from '@/components/ServiceCard';
 import FeatureColumn from '@/components/FeatureColumn';
 import ConnectorLine from '@/components/ConnectorLine';
@@ -90,59 +88,57 @@ const Index = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       
-      {/* Hero Section with Parallax */}
-      <ParallaxHero className="min-h-screen flex items-center justify-center relative overflow-hidden">
-        <section 
-          ref={el => sectionsRef.current[0] = el} 
-          data-index={0}
-          className="w-full"
-        >
-          <ParticlesBackground />
-          
-          <div className="consularity-container text-center z-10 relative">
-            <div className="max-w-3xl mx-auto">
-              <img 
-                src="/lovable-uploads/ad26eaa0-5998-4d76-b99e-67d19dc9f090.png" 
-                alt="Consularity Logo" 
-                className="h-16 md:h-20 mx-auto mb-6 invert-0 dark:invert" 
-              />
+      {/* Hero Section */}
+      <section 
+        ref={el => sectionsRef.current[0] = el} 
+        data-index={0}
+        className="min-h-screen flex items-center justify-center relative overflow-hidden"
+      >
+        <ParticlesBackground />
+        
+        <div className="consularity-container text-center z-10">
+          <div className="max-w-3xl mx-auto">
+            <img 
+              src="/lovable-uploads/ad26eaa0-5998-4d76-b99e-67d19dc9f090.png" 
+              alt="Consularity Logo" 
+              className="h-16 md:h-20 mx-auto mb-6 invert-0 dark:invert" 
+            />
+            
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 animate-fade-in">
+              {t('Where AI, Cloud, and Business Systems Converge')}
+            </h1>
+            
+            <p className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
+              {t('Premium consultancy for SAP Business One, AWS Cloud and AI-powered solutions tailored to small and midsize enterprises.')}
+            </p>
+            
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Button 
+                className="cta-button text-lg px-8 py-6"
+                onClick={handleLetsTalkClick}
+              >
+                {t('Let\'s Talk')}
+              </Button>
               
-              <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 animate-fade-in">
-                {t('Where AI, Cloud, and Business Systems Converge')}
-              </h1>
-              
-              <p className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
-                {t('Premium consultancy for SAP Business One, AWS Cloud and AI-powered solutions tailored to small and midsize enterprises.')}
-              </p>
-              
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Button 
-                  className="cta-button text-lg px-8 py-6"
-                  onClick={handleLetsTalkClick}
-                >
-                  {t('Let\'s Talk')}
-                </Button>
-                
-                <Button 
-                  variant="outline" 
-                  size="lg" 
-                  className="group"
-                  onClick={handleDiscoverApproachClick}
-                >
-                  {t('Discover Our Approach')}
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </div>
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="group"
+                onClick={handleDiscoverApproachClick}
+              >
+                {t('Discover Our Approach')}
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
             </div>
           </div>
-        </section>
-      </ParallaxHero>
+        </div>
+      </section>
       
-      {/* Services Section with Dots Pattern */}
+      {/* Services Section */}
       <section
         ref={el => sectionsRef.current[1] = el}
         data-index={1}
-        className="py-24 relative pattern-dots dark:pattern-dots-dark"
+        className="py-24 relative"
       >
         <ConnectorLine active={activeSection === 1} />
         
@@ -207,7 +203,7 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Approach Section with Grid Pattern */}
+      {/* Approach Section */}
       <section
         ref={(el) => {
           // Store reference for both the section tracking and the smooth scroll
@@ -215,8 +211,8 @@ const Index = () => {
           approachSectionRef.current = el;
         }}
         data-index={2}
-        className="py-24 bg-gray-50/50 dark:bg-gray-900/30 relative pattern-grid"
-        id="approach"
+        className="py-24 bg-gray-50/50 dark:bg-gray-900/30 relative"
+        id="approach" // Added ID for direct navigation
       >
         <ConnectorLine active={activeSection === 2} />
         
@@ -248,11 +244,11 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Project Timeline Section with Lines Pattern */}
+      {/* Project Timeline Section */}
       <section
         ref={el => sectionsRef.current[3] = el}
         data-index={3}
-        className="py-24 relative pattern-lines"
+        className="py-24 relative"
       >
         <ConnectorLine active={activeSection === 3} />
         
@@ -269,11 +265,11 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Testimonials Section with Hexagon Pattern */}
+      {/* Testimonials Section */}
       <section
         ref={el => sectionsRef.current[4] = el}
         data-index={4}
-        className="py-24 bg-gray-50/50 dark:bg-gray-900/30 relative pattern-hexagon"
+        className="py-24 bg-gray-50/50 dark:bg-gray-900/30 relative"
       >
         <ConnectorLine active={activeSection === 4} />
         
@@ -290,11 +286,11 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Our Impact Section with Dots Pattern */}
+      {/* Our Impact Section */}
       <section
         ref={el => sectionsRef.current[5] = el}
         data-index={5}
-        className="py-24 relative pattern-dots dark:pattern-dots-dark"
+        className="py-24 relative"
       >
         <ConnectorLine active={activeSection === 5} />
         
@@ -311,11 +307,11 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Impact Metrics Section with Grid Pattern */}
+      {/* Impact Metrics Section */}
       <section
         ref={el => sectionsRef.current[6] = el}
         data-index={6}
-        className="py-24 bg-gray-50/50 dark:bg-gray-900/30 relative pattern-grid"
+        className="py-24 bg-gray-50/50 dark:bg-gray-900/30 relative"
       >
         <ConnectorLine active={activeSection === 6} />
         
@@ -332,11 +328,11 @@ const Index = () => {
         </div>
       </section>
       
-      {/* CTA Section with Lines Pattern */}
+      {/* CTA Section */}
       <section
         ref={el => sectionsRef.current[7] = el}
         data-index={7}
-        className="py-24 relative pattern-lines"
+        className="py-24 relative"
       >
         <ConnectorLine active={activeSection === 7} />
         
