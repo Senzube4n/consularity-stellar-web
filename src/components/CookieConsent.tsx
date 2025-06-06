@@ -136,65 +136,69 @@ export const CookieConsent: React.FC = () => {
 
   return (
     <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-background border rounded-lg shadow-lg max-w-md w-full p-6 max-h-[90vh] overflow-y-auto">
+      <div className="bg-background border rounded-lg shadow-lg w-full max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl p-4 sm:p-6 max-h-[90vh] overflow-y-auto">
         <div className="flex items-center gap-2 mb-4">
-          <Shield className="h-6 w-6 text-primary" />
-          <h2 className="text-xl font-semibold">{t('Privacy Preferences')}</h2>
+          <Shield className="h-6 w-6 text-primary flex-shrink-0" />
+          <h2 className="text-lg sm:text-xl font-semibold">{t('Privacy Preferences')}</h2>
         </div>
         
-        <p className="text-muted-foreground mb-6">
+        <p className="text-muted-foreground mb-6 text-sm sm:text-base">
           {t('We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.')}
         </p>
         
         <div className="space-y-4 mb-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="font-medium">{t('Necessary Cookies')}</h3>
-              <p className="text-sm text-muted-foreground">{t('Required for the website to function properly')}</p>
+          <div className="flex items-start justify-between gap-3">
+            <div className="flex-1 min-w-0">
+              <h3 className="font-medium text-sm sm:text-base">{t('Necessary Cookies')}</h3>
+              <p className="text-xs sm:text-sm text-muted-foreground">{t('Required for the website to function properly')}</p>
             </div>
-            <Switch checked disabled />
+            <Switch checked disabled className="flex-shrink-0" />
           </div>
           
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="font-medium">{t('Analytics Cookies')}</h3>
-              <p className="text-sm text-muted-foreground">{t('Help us understand how visitors interact with our website')}</p>
+          <div className="flex items-start justify-between gap-3">
+            <div className="flex-1 min-w-0">
+              <h3 className="font-medium text-sm sm:text-base">{t('Analytics Cookies')}</h3>
+              <p className="text-xs sm:text-sm text-muted-foreground">{t('Help us understand how visitors interact with our website')}</p>
             </div>
             <Switch 
               checked={options.analytics} 
               onCheckedChange={(checked) => setOptions({...options, analytics: checked})}
+              className="flex-shrink-0"
             />
           </div>
           
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="font-medium">{t('Marketing Cookies')}</h3>
-              <p className="text-sm text-muted-foreground">{t('Used to deliver advertisements more relevant to you')}</p>
+          <div className="flex items-start justify-between gap-3">
+            <div className="flex-1 min-w-0">
+              <h3 className="font-medium text-sm sm:text-base">{t('Marketing Cookies')}</h3>
+              <p className="text-xs sm:text-sm text-muted-foreground">{t('Used to deliver advertisements more relevant to you')}</p>
             </div>
             <Switch 
               checked={options.marketing} 
               onCheckedChange={(checked) => setOptions({...options, marketing: checked})}
+              className="flex-shrink-0"
             />
           </div>
         </div>
         
-        <div className="flex flex-col sm:flex-row gap-2">
+        <div className="flex flex-col gap-2 sm:gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <Button 
+              variant="outline" 
+              className="w-full text-xs sm:text-sm" 
+              onClick={handleAcceptNecessary}
+            >
+              {t('Necessary Only')}
+            </Button>
+            <Button 
+              variant="outline" 
+              className="w-full text-xs sm:text-sm" 
+              onClick={handleSavePreferences}
+            >
+              {t('Save Preferences')}
+            </Button>
+          </div>
           <Button 
-            variant="outline" 
-            className="flex-1" 
-            onClick={handleAcceptNecessary}
-          >
-            {t('Necessary Only')}
-          </Button>
-          <Button 
-            variant="outline" 
-            className="flex-1" 
-            onClick={handleSavePreferences}
-          >
-            {t('Save Preferences')}
-          </Button>
-          <Button 
-            className="flex-1" 
+            className="w-full text-xs sm:text-sm" 
             onClick={handleAcceptAll}
           >
             {t('Accept All')}
